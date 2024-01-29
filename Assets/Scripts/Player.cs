@@ -4,13 +4,18 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public float speed;
-    public float jumpForce;
-    public float fallMultiplier;
-    public float lowJumpMultiplier;
+    public float speed;      
+    
+    public float jumpForce;             
+    public float fallMultiplier;        //Gravity multiplier applied when player falls
+    public float lowJumpMultiplier;     //Gravity multiplier applied when jump button is tapped (short jump)
+    private Vector2 fallVector;         //Precalculated vector to account for increased gravity during player's fall
+    private Vector2 lowJumpVector;      //Precalculated vector to allow player to make short jumps
 
-    private Vector2 fallVector;
-    private Vector2 lowJumpVector;
+    public float groundCheckRadius;     //Radius of ground check sphere
+    public LayerMask groundLayer;
+    public Vector2 bottomOffset;       //Offset from player's transform to perform ground checks
+    private bool onGround;
 
     private Rigidbody2D rb;
     // Start is called before the first frame update
@@ -25,10 +30,15 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //On ground check
+        onGround = Physics2D.OverlapCircle((Vector2)transform.position + bottomOffset, groundCheckRadius, groundLayer);
+
+        //Increase gravity by fallMultiplier if player is falling
         if(rb.velocity.y < 0)
         {
             rb.velocity += fallVector * Time.deltaTime;
         }
+        //Increase gravity by lowJumpMultiplier if jump button is tapped 
         else if(rb.velocity.y > 0 && !Input.GetKey(KeyCode.Space))
         {
             rb.velocity += lowJumpVector * Time.deltaTime;
@@ -40,7 +50,7 @@ public class Player : MonoBehaviour
 
         Move(inputDir);
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (onGround && Input.GetKeyDown(KeyCode.Space))
         {
             Jump();
         }
@@ -55,5 +65,11 @@ public class Player : MonoBehaviour
     {
         rb.velocity = new Vector2(rb.velocity.x, 0);
         rb.velocity += Vector2.up * jumpForce;
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere((Vector2)transform.position + bottomOffset, groundCheckRadius);
     }
 }

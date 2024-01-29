@@ -227,7 +227,7 @@ GameObject:
   - component: {fileID: 846959721}
   - component: {fileID: 846959720}
   - component: {fileID: 846959719}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -405,10 +405,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fbfcddee65bee14383d2fe755cb17d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 8
-  jumpForce: 7
-  fallMultiplier: 2.5
-  lowJumpMultiplier: 2
+  speed: 10
+  jumpForce: 15
+  fallMultiplier: 4
+  lowJumpMultiplier: 7
+  groundCheckRadius: 0.2
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  bottomOffset: {x: 0, y: -0.5}
 --- !u!61 &2032530903
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -469,7 +474,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 3
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
