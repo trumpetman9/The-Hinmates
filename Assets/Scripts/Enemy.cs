@@ -5,6 +5,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     public float health;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -17,6 +18,7 @@ public class Enemy : MonoBehaviour
         if (health <= 0)
         {
             Destroy(gameObject);
+            
         }
     }
 }

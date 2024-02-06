@@ -297,7 +297,7 @@ GameObject:
   - component: {fileID: 88038577}
   m_Layer: 7
   m_Name: mask
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -466,7 +466,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09fc849aae8067e41a40c38734d3697f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 0
+  health: 5
 --- !u!1 &272792215
 GameObject:
   m_ObjectHideFlags: 0
@@ -2044,7 +2044,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1034084a7c7dbe147bc6061007b15ad2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startTimeAttack: 0.3
+  startTimeAttack: 0.15
   attackPos: {fileID: 1060525335}
   whatIsEnemies:
     serializedVersion: 2
