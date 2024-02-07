@@ -11,6 +11,8 @@ public class Player : MonoBehaviour
     public float jumpForce;             
     public float fallMultiplier;        //Gravity multiplier applied when player falls
     public float lowJumpMultiplier;     //Gravity multiplier applied when jump button is tapped (short jump)
+    public float coyoteTime;
+    public float coyoteTimeCounter;
     private Vector2 fallVector;         //Precalculated vector to account for increased gravity during player's fall
     private Vector2 lowJumpVector;      //Precalculated vector to allow player to make short jumps
 
@@ -28,19 +30,6 @@ public class Player : MonoBehaviour
 
 
     private int masksKilled = 0;
-
-    public int MasksKilled
-    {
-        get { return masksKilled; }
-        private set { masksKilled = value; } // Keep or remove this
-    }
-
-    // Public method to increment the kill count
-    public void IncrementKillCount()
-    {
-        masksKilled++;
-        Debug.Log("Masks Killed: " + masksKilled);
-    }
 
     private Rigidbody2D rb;
     private SpriteRenderer sr;
@@ -69,6 +58,15 @@ public class Player : MonoBehaviour
         onWall = Physics2D.OverlapCircle((Vector2)transform.position + sideOffset, wallCheckRadius, groundLayer) ||
             Physics2D.OverlapCircle((Vector2)transform.position - sideOffset, wallCheckRadius, groundLayer);
 
+        if (onGround)
+        {
+            coyoteTimeCounter = coyoteTime;
+        }
+        else
+        {
+            coyoteTimeCounter -= Time.deltaTime;
+        }
+
         if (onWall && !onGround && rb.velocity.y < 0)
         {
             Debug.Log("Wall Slide");
@@ -86,9 +84,14 @@ public class Player : MonoBehaviour
             rb.velocity += lowJumpVector * Time.deltaTime;
         }
 
-        if (onGround && (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKey(KeyCode.Space)))
+        if(coyoteTimeCounter > 0f && (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.Space)))
         {
             Jump();
+        }
+
+        if((Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.UpArrow) || Input.GetKeyUp(KeyCode.Space)) && rb.velocity.y > 0f)
+        {
+            coyoteTimeCounter = 0f;
         }
     }
 
@@ -115,6 +118,19 @@ public class Player : MonoBehaviour
     private void WallSlide()
     {
         rb.velocity = new Vector2(rb.velocity.x, -slideVelocity);
+    }
+
+    public int MasksKilled
+    {
+        get { return masksKilled; }
+        private set { masksKilled = value; } // Keep or remove this
+    }
+
+    // Public method to increment the kill count
+    public void IncrementKillCount()
+    {
+        masksKilled++;
+        Debug.Log("Masks Killed: " + masksKilled);
     }
     private void OnDrawGizmosSelected()
     {
