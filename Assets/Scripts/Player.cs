@@ -53,7 +53,7 @@ public class Player : MonoBehaviour
         onWall = Physics2D.OverlapCircle((Vector2)transform.position + sideOffset, wallCheckRadius, groundLayer) ||
             Physics2D.OverlapCircle((Vector2)transform.position - sideOffset, wallCheckRadius, groundLayer);
 
-        if (onWall && !onGround)
+        if (onWall && !onGround && rb.velocity.y < 0)
         {
             Debug.Log("Wall Slide");
             WallSlide();
@@ -65,12 +65,12 @@ public class Player : MonoBehaviour
             rb.velocity += fallVector * Time.deltaTime;
         }
         //Increase gravity by lowJumpMultiplier if jump button is tapped 
-        else if(rb.velocity.y > 0 && !Input.GetKey(KeyCode.Space))
+        else if(rb.velocity.y > 0 && !(Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.Space)))
         {
             rb.velocity += lowJumpVector * Time.deltaTime;
         }
 
-        if (onGround && Input.GetKeyDown(KeyCode.Space))
+        if (onGround && (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKey(KeyCode.Space)))
         {
             Jump();
         }
