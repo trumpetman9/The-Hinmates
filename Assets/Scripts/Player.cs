@@ -26,6 +26,22 @@ public class Player : MonoBehaviour
     public Vector2 sideOffset;       //Offset from player's transform to perform ground checks
     private bool onWall;
 
+
+    private int masksKilled = 0;
+
+    public int MasksKilled
+    {
+        get { return masksKilled; }
+        private set { masksKilled = value; } // Keep or remove this
+    }
+
+    // Public method to increment the kill count
+    public void IncrementKillCount()
+    {
+        masksKilled++;
+        Debug.Log("Masks Killed: " + masksKilled);
+    }
+
     private Rigidbody2D rb;
     // Start is called before the first frame update
     void Start()
