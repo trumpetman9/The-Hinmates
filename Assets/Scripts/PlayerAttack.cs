@@ -25,6 +25,17 @@ public class PlayerAttack : MonoBehaviour
                 for (int i = 0; i < enemiesToDamage.Length; i++)
                 {
                     enemiesToDamage[i].GetComponent<Enemy>().health -= damage;
+                    Debug.Log("hi1");
+
+                    if (enemiesToDamage[i].GetComponent<Enemy>().health <= 0)
+                    {
+                        Debug.Log("hi2");
+                        GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
+                        if (playerObject != null)
+                        {
+                            playerObject.GetComponent<Player>().IncrementKillCount();
+                        }
+                    }
                 }
 
             }
