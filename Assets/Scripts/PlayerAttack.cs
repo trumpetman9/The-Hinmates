@@ -12,15 +12,29 @@ public class PlayerAttack : MonoBehaviour
     public float attackRange;
     public float damage;
 
+    private bool isAttack;
+
+    void Start()
+    {
+        isAttack = false;
+    }
 
     // Update is called once per frame
     void Update()
     {
-        if (timeToAttack <= 0)
+        // Cooldown logic
+        if (timeToAttack > 0)
         {
+            timeToAttack -= Time.deltaTime;
+        }
 
-            if (Input.GetKey(KeyCode.F))
+        if (Input.GetKey(KeyCode.F) && timeToAttack <= 0)
+        {
+            if (!isAttack)
             {
+                isAttack = true;
+
+                GetComponentInChildren<Animator>().Play("Slash Animation");
                 Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(attackPos.position, attackRange, whatIsEnemies);
                 for (int i = 0; i < enemiesToDamage.Length; i++)
                 {
@@ -38,17 +52,19 @@ public class PlayerAttack : MonoBehaviour
                     }
                 }
 
+                // Reset the cooldown timer
+                timeToAttack = startTimeAttack;
             }
-            timeToAttack = startTimeAttack;
-
         }
-        else
+
+        if (Input.GetKeyUp(KeyCode.F))
         {
-            timeToAttack -= Time.deltaTime;
+            isAttack = false;
         }
     }
 
-    void OnDrawGizmos()
+
+    void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
 
