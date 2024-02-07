@@ -26,6 +26,8 @@ public class Player : MonoBehaviour
     public Vector2 sideOffset;       //Offset from player's transform to perform ground checks
     private bool onWall;
 
+    private bool isFacingRight = true;
+
 
     private int masksKilled = 0;
 
@@ -96,15 +98,15 @@ public class Player : MonoBehaviour
     {
         rb.velocity = new Vector2(dir.x * speed, rb.velocity.y);
 
-        if(dir.x < 0)
+        if (isFacingRight && dir.x< 0f || !isFacingRight && dir.x > 0f)
         {
-            gameObject.transform.localScale = new Vector3(-0.2371941f, 0.2486913f, 1);
-        }
-        else if(dir.x > 0)
-        {
-            gameObject.transform.localScale = new Vector3(0.2371941f, 0.2486913f, 1);
+            Vector3 localScale = transform.localScale;
+            isFacingRight = !isFacingRight;
+            localScale.x *= -1f;
+            transform.localScale = localScale;
         }
     }
+        
 
     private void Jump()
     {
