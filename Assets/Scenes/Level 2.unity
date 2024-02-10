@@ -2172,7 +2172,6 @@ GameObject:
   - component: {fileID: 889234909}
   - component: {fileID: 889234908}
   - component: {fileID: 889234907}
-  - component: {fileID: 889234912}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -2190,7 +2189,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -12.7495, y: 6.9004, z: 0}
-  m_LocalScale: {x: 0.2, y: 0.2, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 678081447}
@@ -2232,8 +2231,14 @@ MonoBehaviour:
   jumpForce: 15
   fallMultiplier: 4
   lowJumpMultiplier: 7
-  coyoteTime: 0.2
-  coyoteTimeCounter: 0
+  groundCheckRadius: 0.2
+  bottomOffset: {x: 0, y: -1}
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  wallCheckRadius: 0.2
+  slideVelocity: 5
+  sideOffset: {x: 0.5, y: 0}
 --- !u!61 &889234909
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2266,18 +2271,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.00000071525574, y: 0.39888334}
+  m_Offset: {x: -0.00000071525574, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 12, y: 12}
-    newSize: {x: 12, y: 12}
+    oldSize: {x: 4.48, y: 4.48}
+    newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 4, y: 10.719972}
+  m_Size: {x: 4, y: 4}
   m_EdgeRadius: 0
 --- !u!50 &889234910
 Rigidbody2D:
@@ -2347,37 +2352,17 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 7d063dd17c7ed4c4087afc3687699732, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 71f2c19427def0243b69b959e1cdc71c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 12, y: 12}
+  m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &889234912
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 889234905}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f77bd0909c884047899e51ea29f73cc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  groundCheckRadius: 0.2
-  bottomOffset: {x: 0, y: -1}
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 64
-  wallCheckRadius: 0.2
-  slideVelocity: 5
-  sideOffset: {x: 0.5, y: 0}
 --- !u!1 &904730824
 GameObject:
   m_ObjectHideFlags: 0
