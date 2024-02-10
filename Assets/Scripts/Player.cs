@@ -16,28 +16,18 @@ public class Player : MonoBehaviour
     private Vector2 fallVector;         //Precalculated vector to account for increased gravity during player's fall
     private Vector2 lowJumpVector;      //Precalculated vector to allow player to make short jumps
 
-    [Header("Ground Check")]
-    public float groundCheckRadius;     //Radius of ground check sphere
-    public Vector2 bottomOffset;       //Offset from player's transform to perform ground checks
-    public LayerMask groundLayer;
-    private bool onGround;
-
-    [Header("Wall Climbing")]
-    public float wallCheckRadius;     //Radius of ground check sphere
-    public float slideVelocity;
-    public Vector2 sideOffset;       //Offset from player's transform to perform ground checks
-    private bool onWall;
-
 
     private int masksKilled = 0;
 
     private Rigidbody2D rb;
     private SpriteRenderer sr;
+    private PlayerCollision pc;
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
+        pc = GetComponent<PlayerCollision>();
 
         fallVector = Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1);
         lowJumpVector = Vector2.up * Physics2D.gravity.y * (lowJumpMultiplier - 1);
@@ -52,13 +42,8 @@ public class Player : MonoBehaviour
 
         Move(inputDir);
 
-        //On ground check
-        onGround = Physics2D.OverlapCircle((Vector2)transform.position + bottomOffset, groundCheckRadius, groundLayer);
-        //On wall check
-        onWall = Physics2D.OverlapCircle((Vector2)transform.position + sideOffset, wallCheckRadius, groundLayer) ||
-            Physics2D.OverlapCircle((Vector2)transform.position - sideOffset, wallCheckRadius, groundLayer);
-
-        if (onGround)
+        Debug.Log(pc.onGround);
+        if (pc.onGround)
         {
             coyoteTimeCounter = coyoteTime;
         }
@@ -67,7 +52,7 @@ public class Player : MonoBehaviour
             coyoteTimeCounter -= Time.deltaTime;
         }
 
-        if (onWall && !onGround && rb.velocity.y < 0)
+        if (pc.onWall && !pc.onGround && rb.velocity.y < 0)
         {
             Debug.Log("Wall Slide");
             WallSlide();
@@ -117,7 +102,7 @@ public class Player : MonoBehaviour
 
     private void WallSlide()
     {
-        rb.velocity = new Vector2(rb.velocity.x, -slideVelocity);
+        rb.velocity = new Vector2(rb.velocity.x, -pc.slideVelocity);
     }
 
     public int MasksKilled
@@ -131,14 +116,5 @@ public class Player : MonoBehaviour
     {
         masksKilled++;
         Debug.Log("Masks Killed: " + masksKilled);
-    }
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.red;
-        //Ground check sphere
-        Gizmos.DrawWireSphere((Vector2)transform.position + bottomOffset, groundCheckRadius);
-        //Wall check spheres
-        Gizmos.DrawWireSphere((Vector2)transform.position + sideOffset, wallCheckRadius);
-        Gizmos.DrawWireSphere((Vector2)transform.position - sideOffset, wallCheckRadius);
     }
 }
