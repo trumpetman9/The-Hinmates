@@ -13,6 +13,8 @@ public class Player : MonoBehaviour
     public float lowJumpMultiplier;     //Gravity multiplier applied when jump button is tapped (short jump)
     public float coyoteTime;
     public float coyoteTimeCounter;
+    public float jumpBufferTime;
+    public float jumpBufferCounter;
     private Vector2 fallVector;         //Precalculated vector to account for increased gravity during player's fall
     private Vector2 lowJumpVector;      //Precalculated vector to allow player to make short jumps
 
@@ -43,6 +45,8 @@ public class Player : MonoBehaviour
         Move(inputDir);
 
         Debug.Log(pc.onGround);
+
+        //Coyote time handling
         if (pc.onGround)
         {
             coyoteTimeCounter = coyoteTime;
@@ -58,6 +62,16 @@ public class Player : MonoBehaviour
             WallSlide();
         }
 
+        //Jump buffer handling
+        if(Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.Space))
+        {
+            jumpBufferCounter = jumpBufferTime;
+        }
+        else
+        {
+            jumpBufferCounter -= Time.deltaTime;
+        }
+
         //Increase gravity by fallMultiplier if player is falling
         if(rb.velocity.y < 0)
         {
@@ -69,7 +83,7 @@ public class Player : MonoBehaviour
             rb.velocity += lowJumpVector * Time.deltaTime;
         }
 
-        if(coyoteTimeCounter > 0f && (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.Space)))
+        if(coyoteTimeCounter > 0f && jumpBufferCounter > 0f)
         {
             Jump();
         }
