@@ -26,11 +26,31 @@ public class Player : MonoBehaviour
     public Vector2 sideOffset;       //Offset from player's transform to perform ground checks
     private bool onWall;
 
+    private bool isFacingRight = true;
+
+
+    private int masksKilled = 0;
+
+    public int MasksKilled
+    {
+        get { return masksKilled; }
+        private set { masksKilled = value; } // Keep or remove this
+    }
+
+    // Public method to increment the kill count
+    public void IncrementKillCount()
+    {
+        masksKilled++;
+        Debug.Log("Masks Killed: " + masksKilled);
+    }
+
     private Rigidbody2D rb;
+    private SpriteRenderer sr;
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        sr = GetComponent<SpriteRenderer>();
 
         fallVector = Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1);
         lowJumpVector = Vector2.up * Physics2D.gravity.y * (lowJumpMultiplier - 1);
@@ -51,7 +71,7 @@ public class Player : MonoBehaviour
         onWall = Physics2D.OverlapCircle((Vector2)transform.position + sideOffset, wallCheckRadius, groundLayer) ||
             Physics2D.OverlapCircle((Vector2)transform.position - sideOffset, wallCheckRadius, groundLayer);
 
-        if (onWall && !onGround)
+        if (onWall && !onGround && rb.velocity.y < 0)
         {
             Debug.Log("Wall Slide");
             WallSlide();
@@ -63,12 +83,12 @@ public class Player : MonoBehaviour
             rb.velocity += fallVector * Time.deltaTime;
         }
         //Increase gravity by lowJumpMultiplier if jump button is tapped 
-        else if(rb.velocity.y > 0 && !Input.GetKey(KeyCode.Space))
+        else if(rb.velocity.y > 0 && !(Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.Space)))
         {
             rb.velocity += lowJumpVector * Time.deltaTime;
         }
 
-        if (onGround && Input.GetKeyDown(KeyCode.Space))
+        if (onGround && (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKey(KeyCode.Space)))
         {
             Jump();
         }
@@ -77,7 +97,16 @@ public class Player : MonoBehaviour
     private void Move(Vector2 dir)
     {
         rb.velocity = new Vector2(dir.x * speed, rb.velocity.y);
+
+        if (isFacingRight && dir.x< 0f || !isFacingRight && dir.x > 0f)
+        {
+            Vector3 localScale = transform.localScale;
+            isFacingRight = !isFacingRight;
+            localScale.x *= -1f;
+            transform.localScale = localScale;
+        }
     }
+        
 
     private void Jump()
     {
