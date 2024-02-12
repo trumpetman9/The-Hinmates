@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -92,6 +93,23 @@ public class Player : MonoBehaviour
         {
             Jump();
         }
+
+        // ENEMY INTERACTION
+
+
+
+
+}
+
+    // This function is called when a collision occurs
+    private void OnCollisionEnter2D(Collision collision)
+    {
+        // Check if the collision is with a specific tag or layer, if needed
+        if (collision.gameObject.CompareTag("Door"))
+        {
+            // Load the next scene
+            SceneManager.LoadScene("Level2");
+        }
     }
 
     private void Move(Vector2 dir)
@@ -128,3 +146,4 @@ public class Player : MonoBehaviour
         Gizmos.DrawWireSphere((Vector2)transform.position - sideOffset, wallCheckRadius);
     }
 }
+
