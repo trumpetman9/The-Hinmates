@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -31,11 +32,17 @@ public class Player : MonoBehaviour
 
     private int masksKilled = 0;
 
+    [Header("Health")]
+    public float maxHealth = 100;
+    public float currentHealth;
+
     public int MasksKilled
     {
         get { return masksKilled; }
         private set { masksKilled = value; } // Keep or remove this
     }
+
+
 
     // Public method to increment the kill count
     public void IncrementKillCount()
@@ -46,11 +53,15 @@ public class Player : MonoBehaviour
 
     private Rigidbody2D rb;
     private SpriteRenderer sr;
+    public Image hb;
+    
     // Start is called before the first frame update
     void Start()
     {
+        currentHealth = maxHealth;
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
+        hb = GetComponent<Image>();
 
         fallVector = Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1);
         lowJumpVector = Vector2.up * Physics2D.gravity.y * (lowJumpMultiplier - 1);
@@ -92,6 +103,13 @@ public class Player : MonoBehaviour
         {
             Jump();
         }
+
+        if(Input.GetKeyDown(KeyCode.Return)){
+            LowerBar(1);
+        }
+        if(Input.GetKeyDown(KeyCode.H)){
+            IncreaseBar(1);
+        }
     }
 
     private void Move(Vector2 dir)
@@ -126,5 +144,18 @@ public class Player : MonoBehaviour
         //Wall check spheres
         Gizmos.DrawWireSphere((Vector2)transform.position + sideOffset, wallCheckRadius);
         Gizmos.DrawWireSphere((Vector2)transform.position - sideOffset, wallCheckRadius);
+    }
+
+    public void LowerBar(int amount){
+        currentHealth -= amount;
+        currentHealth = Mathf.Max(0, currentHealth);
+        hb.fillAmount = (currentHealth/maxHealth);
+        Debug.Log("Fill amount: " + (currentHealth/maxHealth) * 100);
+    }
+
+    public void IncreaseBar(int amount){
+        currentHealth += amount;
+        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
+        hb.fillAmount = (currentHealth/maxHealth);        
     }
 }
