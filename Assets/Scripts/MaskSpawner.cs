@@ -6,20 +6,26 @@ public class MaskSpawner : MonoBehaviour
     public float spawnInterval = 7f; // Time between each spawn
 
     private float timer;
+    public int maxMasks;
+    private int maskTracker;
 
     void Start()
     {
         timer = spawnInterval; // Initialize the timer
+        maskTracker = 0;
     }
 
     void Update()
     {
         timer -= Time.deltaTime;
 
-        if (timer <= 0)
+        if (timer <= 0) 
         {
-            SpawnMask();
-            timer = spawnInterval; // Reset the timer
+            if (maskTracker < maxMasks) {
+                SpawnMask();
+                maskTracker += 1;
+                timer = spawnInterval; // Reset the timer
+            }
         }
     }
 
