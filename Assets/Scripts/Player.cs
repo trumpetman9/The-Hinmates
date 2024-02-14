@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -31,6 +32,11 @@ public class Player : MonoBehaviour
 
 
     private int masksKilled = 0;
+    public float knockbackForce; // Handles Knockback of Player\
+    public float knockbackLength;
+    public float knockbackCount;
+    public bool knockFromRight;
+
 
     [Header("Health")]
     public float maxHealth = 100;
@@ -109,19 +115,50 @@ public class Player : MonoBehaviour
         }
         if(Input.GetKeyDown(KeyCode.H)){
             IncreaseBar(1);
+        // ENEMY INTERACTION
+
+
+
+
+    }
+
+    // This function is called when a collision occurs
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        // Check if the collision is with a specific tag or layer, if needed
+        if (collision.gameObject.CompareTag("Door"))
+        {
+            // Load the next scene
+            SceneManager.LoadScene("Level2");
         }
     }
 
+
     private void Move(Vector2 dir)
     {
-        rb.velocity = new Vector2(dir.x * speed, rb.velocity.y);
-
-        if (isFacingRight && dir.x< 0f || !isFacingRight && dir.x > 0f)
+        if (knockbackCount <= 0)
         {
-            Vector3 localScale = transform.localScale;
-            isFacingRight = !isFacingRight;
-            localScale.x *= -1f;
-            transform.localScale = localScale;
+            rb.velocity = new Vector2(dir.x * speed, rb.velocity.y);
+
+            if (isFacingRight && dir.x < 0f || !isFacingRight && dir.x > 0f)
+            {
+                Vector3 localScale = transform.localScale;
+                isFacingRight = !isFacingRight;
+                localScale.x *= -1f;
+                transform.localScale = localScale;
+            }
+        }
+        else
+        {
+            if (knockFromRight)
+            {
+                rb.velocity = new Vector2(-knockbackCount, knockbackCount);
+            }
+            if (!knockFromRight)
+            {
+                rb.velocity = new Vector2(-knockbackCount, knockbackCount);
+            }
+            knockbackCount -= Time.deltaTime;
         }
     }
         
@@ -159,3 +196,4 @@ public class Player : MonoBehaviour
         hb.fillAmount = (currentHealth/maxHealth);        
     }
 }
+
