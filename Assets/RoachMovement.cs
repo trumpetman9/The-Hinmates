@@ -3,12 +3,15 @@ using UnityEngine;
 public class RoachMovement : MonoBehaviour
 {
     public float speed = 5f; // Speed of the roach's movement
-    public float boundaryLeft = -10f; // Left boundary of the roach's movement
-    public float boundaryRight = 10f; // Right boundary of the roach's movement
+    public float boundaryLeft = -5f; // Left boundary of the roach's movement
+    public float boundaryRight = 5f; // Right boundary of the roach's movement
 
-    private bool movingRight = false; // Direction of movement
-   
+    private bool movingRight = true; // Direction of movement
 
+    void Start()
+    {
+        Flip();
+    }
     void Update()
     {
         // Move the roach
