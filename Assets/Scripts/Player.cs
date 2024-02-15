@@ -116,7 +116,7 @@ public class Player : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.H)){
             IncreaseBar(1);
         // ENEMY INTERACTION
-
+        }
 
 
 
@@ -196,4 +196,3 @@ public class Player : MonoBehaviour
         hb.fillAmount = (currentHealth/maxHealth);        
     }
 }
-
