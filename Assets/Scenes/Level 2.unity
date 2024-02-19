@@ -238,7 +238,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maskPrefab: {fileID: 255141667939943779, guid: 6eb8139873d964ab2a2a096f58841c9a, type: 3}
-  spawnInterval: 4
+  spawnInterval: 15
   maxMasks: 5
 --- !u!212 &82299527
 SpriteRenderer:
@@ -1376,7 +1376,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maskPrefab: {fileID: 255141667939943779, guid: 6eb8139873d964ab2a2a096f58841c9a, type: 3}
-  spawnInterval: 4
+  spawnInterval: 15
   maxMasks: 5
 --- !u!212 &538430584
 SpriteRenderer:
@@ -3272,7 +3272,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maskPrefab: {fileID: 255141667939943779, guid: 6eb8139873d964ab2a2a096f58841c9a, type: 3}
-  spawnInterval: 4
+  spawnInterval: 15
   maxMasks: 5
 --- !u!212 &1026620636
 SpriteRenderer:
@@ -3372,7 +3372,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maskPrefab: {fileID: 255141667939943779, guid: 6eb8139873d964ab2a2a096f58841c9a, type: 3}
-  spawnInterval: 4
+  spawnInterval: 15
   maxMasks: 5
 --- !u!212 &1049311140
 SpriteRenderer:
@@ -3472,7 +3472,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maskPrefab: {fileID: 255141667939943779, guid: 6eb8139873d964ab2a2a096f58841c9a, type: 3}
-  spawnInterval: 4
+  spawnInterval: 15
   maxMasks: 5
 --- !u!212 &1094607483
 SpriteRenderer:
@@ -124732,7 +124732,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maskPrefab: {fileID: 255141667939943779, guid: 6eb8139873d964ab2a2a096f58841c9a, type: 3}
-  spawnInterval: 4
+  spawnInterval: 15
   maxMasks: 5
 --- !u!212 &1946942566
 SpriteRenderer:
@@ -125300,7 +125300,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maskPrefab: {fileID: 255141667939943779, guid: 6eb8139873d964ab2a2a096f58841c9a, type: 3}
-  spawnInterval: 4
+  spawnInterval: 15
   maxMasks: 5
 --- !u!212 &1973936254
 SpriteRenderer:
