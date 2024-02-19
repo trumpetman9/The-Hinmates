@@ -18,6 +18,18 @@ public class Player : MonoBehaviour
     private Vector2 fallVector;         //Precalculated vector to account for increased gravity during player's fall
     private Vector2 lowJumpVector;      //Precalculated vector to allow player to make short jumps
 
+    [Header("Dash")]
+    public float dashSpeed;
+    public float dashTime;
+    private bool isDashing;
+    [SerializeField] private bool canDash;
+    private Vector2 dashDir;
+
+    [Header("Wall Sliding")]
+    public float slideVelocity;
+
+    [Header("Wall Climbing")]
+    private bool isWallSliding;
 
     private int masksKilled = 0;
 
@@ -44,26 +56,19 @@ public class Player : MonoBehaviour
 
         Move(inputDir);
 
-        Debug.Log(pc.onGround);
-
         //Coyote time handling
         if (pc.onGround)
         {
             coyoteTimeCounter = coyoteTime;
+            canDash = true;
         }
         else
         {
             coyoteTimeCounter -= Time.deltaTime;
         }
 
-        if (pc.onWall && !pc.onGround && rb.velocity.y < 0)
-        {
-            Debug.Log("Wall Slide");
-            WallSlide();
-        }
-
         //Jump buffer handling
-        if(Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.Space))
         {
             jumpBufferCounter = jumpBufferTime;
         }
@@ -71,6 +76,38 @@ public class Player : MonoBehaviour
         {
             jumpBufferCounter -= Time.deltaTime;
         }
+
+        //Dash
+        if (Input.GetKeyDown(KeyCode.K) && canDash)
+        {
+            isDashing = true;
+            canDash = false;
+            dashDir = inputDir;
+
+            if(dashDir == Vector2.zero)
+            {
+                dashDir = new Vector2(Mathf.Sign(transform.localScale.x), 0);
+            }
+            StartCoroutine(StopDash());
+        }
+
+        if (isDashing)
+        {
+            Dash(dashDir);
+        }
+
+        //Wall Sliding
+        //if (pc.onWall && !pc.onGround)
+        //{
+        //    Debug.Log("Wall Slide");
+        //    isWallSliding = true;
+        //    WallSlide();
+        //}
+        //else
+        //{
+        //    isWallSliding = false;
+        //}
+
 
         //Increase gravity by fallMultiplier if player is falling
         if(rb.velocity.y < 0)
@@ -114,10 +151,21 @@ public class Player : MonoBehaviour
         rb.velocity += Vector2.up * jumpForce;
     }
 
-    private void WallSlide()
+    //private void WallSlide()
+    //{
+    //    rb.velocity = new Vector2(rb.velocity.x, -slideVelocity);
+    //}
+
+    private void Dash(Vector2 dir)
     {
-        rb.velocity = new Vector2(rb.velocity.x, -pc.slideVelocity);
+        rb.velocity = dir.normalized * dashSpeed;
     }
+
+    //private void WallJump(Vector2 dir)
+    //{
+    //    rb.velocity = Vector2.Lerp(rb.velocity, (new Vector2(-dir.x * speed, rb.velocity.y)), 0.5f * Time.deltaTime);
+    //    rb.AddForce(new Vector2(dir.x * speed, 10000), ForceMode2D.Force);
+    //}
 
     public int MasksKilled
     {
@@ -130,5 +178,11 @@ public class Player : MonoBehaviour
     {
         masksKilled++;
         Debug.Log("Masks Killed: " + masksKilled);
+    }
+
+    private IEnumerator StopDash()
+    {
+        yield return new WaitForSeconds(dashTime);
+        isDashing = false;
     }
 }

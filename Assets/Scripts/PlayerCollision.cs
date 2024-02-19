@@ -12,9 +12,10 @@ public class PlayerCollision : MonoBehaviour
 
     [Header("Wall Climbing")]
     public float wallCheckRadius;     //Radius of ground check sphere
-    public float slideVelocity;
     public Vector2 sideOffset;       //Offset from player's transform to perform ground checks
     public bool onWall { get; set; }
+    public bool onRightWall { get; set; }
+    public bool onLeftWall { get; set; }
 
     // Start is called before the first frame update
     void Start()
@@ -28,8 +29,10 @@ public class PlayerCollision : MonoBehaviour
         //On ground check
         onGround = Physics2D.OverlapCircle((Vector2)transform.position + bottomOffset, groundCheckRadius, groundLayer);
         //On wall check
-        onWall = Physics2D.OverlapCircle((Vector2)transform.position + sideOffset, wallCheckRadius, groundLayer) ||
-            Physics2D.OverlapCircle((Vector2)transform.position - sideOffset, wallCheckRadius, groundLayer);
+        onRightWall = Physics2D.OverlapCircle((Vector2)transform.position + sideOffset, wallCheckRadius, groundLayer);
+        onLeftWall = Physics2D.OverlapCircle((Vector2)transform.position - sideOffset, wallCheckRadius, groundLayer);
+
+        onWall = onRightWall || onLeftWall;
 
     }
 
