@@ -18,6 +18,7 @@ public class Player : MonoBehaviour
     private Vector2 fallVector;         //Precalculated vector to account for increased gravity during player's fall
     private Vector2 lowJumpVector;      //Precalculated vector to allow player to make short jumps
 
+    /*
     [Header("Dash")]
     public float dashSpeed;
     public float dashTime;
@@ -30,6 +31,7 @@ public class Player : MonoBehaviour
 
     [Header("Wall Climbing")]
     private bool isWallSliding;
+    */
 
     private int masksKilled = 0;
 
@@ -60,7 +62,7 @@ public class Player : MonoBehaviour
         if (pc.onGround)
         {
             coyoteTimeCounter = coyoteTime;
-            canDash = true;
+            //canDash = true;
         }
         else
         {
@@ -78,6 +80,7 @@ public class Player : MonoBehaviour
         }
 
         //Dash
+        /*
         if (Input.GetKeyDown(KeyCode.K) && canDash)
         {
             isDashing = true;
@@ -95,7 +98,7 @@ public class Player : MonoBehaviour
         {
             Dash(dashDir);
         }
-
+        */
         //Wall Sliding
         //if (pc.onWall && !pc.onGround)
         //{
@@ -156,10 +159,12 @@ public class Player : MonoBehaviour
     //    rb.velocity = new Vector2(rb.velocity.x, -slideVelocity);
     //}
 
+    /*
     private void Dash(Vector2 dir)
     {
         rb.velocity = dir.normalized * dashSpeed;
     }
+    */
 
     //private void WallJump(Vector2 dir)
     //{
@@ -180,9 +185,11 @@ public class Player : MonoBehaviour
         Debug.Log("Masks Killed: " + masksKilled);
     }
 
+    /*
     private IEnumerator StopDash()
     {
         yield return new WaitForSeconds(dashTime);
         isDashing = false;
     }
+    */
 }
