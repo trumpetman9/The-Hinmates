@@ -3392,6 +3392,7 @@ GameObject:
   - component: {fileID: 2032530907}
   - component: {fileID: 2032530902}
   - component: {fileID: 2032530908}
+  - component: {fileID: 2032530909}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -3415,14 +3416,8 @@ MonoBehaviour:
   jumpForce: 16
   fallMultiplier: 4
   lowJumpMultiplier: 7
-  groundCheckRadius: 0.2
-  bottomOffset: {x: 0, y: -1}
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 64
-  wallCheckRadius: 0.2
-  slideVelocity: 10
-  sideOffset: {x: 0.5, y: 0}
+  coyoteTime: 0.2
+  coyoteTimeCounter: 0
 --- !u!50 &2032530904
 Rigidbody2D:
   serializedVersion: 4
@@ -3583,6 +3578,26 @@ MonoBehaviour:
     m_Bits: 128
   attackRange: 1
   damage: 5
+--- !u!114 &2032530909
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2032530901}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f77bd0909c884047899e51ea29f73cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  groundCheckRadius: 0.2
+  bottomOffset: {x: 0, y: -1.25}
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  wallCheckRadius: 0.2
+  slideVelocity: 5
+  sideOffset: {x: 0.5, y: 0}
 --- !u!1 &2141187135
 GameObject:
   m_ObjectHideFlags: 0

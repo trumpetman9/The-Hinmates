@@ -13,23 +13,27 @@ public class Player : MonoBehaviour
     public float jumpForce;             
     public float fallMultiplier;        //Gravity multiplier applied when player falls
     public float lowJumpMultiplier;     //Gravity multiplier applied when jump button is tapped (short jump)
+    public float coyoteTime;
+    public float coyoteTimeCounter;
+    public float jumpBufferTime;
+    public float jumpBufferCounter;
     private Vector2 fallVector;         //Precalculated vector to account for increased gravity during player's fall
     private Vector2 lowJumpVector;      //Precalculated vector to allow player to make short jumps
 
-    [Header("Ground Check")]
-    public float groundCheckRadius;     //Radius of ground check sphere
-    public Vector2 bottomOffset;       //Offset from player's transform to perform ground checks
-    public LayerMask groundLayer;
-    private bool onGround;
+    /*
+    [Header("Dash")]
+    public float dashSpeed;
+    public float dashTime;
+    private bool isDashing;
+    [SerializeField] private bool canDash;
+    private Vector2 dashDir;
+
+    [Header("Wall Sliding")]
+    public float slideVelocity;
 
     [Header("Wall Climbing")]
-    public float wallCheckRadius;     //Radius of ground check sphere
-    public float slideVelocity;
-    public Vector2 sideOffset;       //Offset from player's transform to perform ground checks
-    private bool onWall;
-
-    private bool isFacingRight = true;
-
+    private bool isWallSliding;
+    */
 
     private int masksKilled = 0;
     public float knockbackForce; // Handles Knockback of Player\
@@ -62,6 +66,7 @@ public class Player : MonoBehaviour
 
     private Rigidbody2D rb;
     private SpriteRenderer sr;
+    private PlayerCollision pc;
     public Image hb; // health bar
 
     public Image mb; // mana bar
@@ -72,6 +77,7 @@ public class Player : MonoBehaviour
         currentHealth = maxHealth;
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
+        pc = GetComponent<PlayerCollision>();
 
         fallVector = Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1);
         lowJumpVector = Vector2.up * Physics2D.gravity.y * (lowJumpMultiplier - 1);
@@ -86,17 +92,59 @@ public class Player : MonoBehaviour
 
         Move(inputDir);
 
-        //On ground check
-        onGround = Physics2D.OverlapCircle((Vector2)transform.position + bottomOffset, groundCheckRadius, groundLayer);
-        //On wall check
-        onWall = Physics2D.OverlapCircle((Vector2)transform.position + sideOffset, wallCheckRadius, groundLayer) ||
-            Physics2D.OverlapCircle((Vector2)transform.position - sideOffset, wallCheckRadius, groundLayer);
-
-        if (onWall && !onGround && rb.velocity.y < 0)
+        //Coyote time handling
+        if (pc.onGround)
         {
-            Debug.Log("Wall Slide");
-            WallSlide();
+            coyoteTimeCounter = coyoteTime;
+            //canDash = true;
         }
+        else
+        {
+            coyoteTimeCounter -= Time.deltaTime;
+        }
+
+        //Jump buffer handling
+        if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            jumpBufferCounter = jumpBufferTime;
+        }
+        else
+        {
+            jumpBufferCounter -= Time.deltaTime;
+        }
+
+        //Dash
+        /*
+        if (Input.GetKeyDown(KeyCode.K) && canDash)
+        {
+            isDashing = true;
+            canDash = false;
+            dashDir = inputDir;
+
+            if(dashDir == Vector2.zero)
+            {
+                dashDir = new Vector2(Mathf.Sign(transform.localScale.x), 0);
+            }
+            StartCoroutine(StopDash());
+        }
+
+        if (isDashing)
+        {
+            Dash(dashDir);
+        }
+        */
+        //Wall Sliding
+        //if (pc.onWall && !pc.onGround)
+        //{
+        //    Debug.Log("Wall Slide");
+        //    isWallSliding = true;
+        //    WallSlide();
+        //}
+        //else
+        //{
+        //    isWallSliding = false;
+        //}
+
 
         //Increase gravity by fallMultiplier if player is falling
         if(rb.velocity.y < 0)
@@ -109,9 +157,14 @@ public class Player : MonoBehaviour
             rb.velocity += lowJumpVector * Time.deltaTime;
         }
 
-        if (onGround && (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)))
+        if(coyoteTimeCounter > 0f && jumpBufferCounter > 0f)
         {
             Jump();
+        }
+
+        if((Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.UpArrow)) && rb.velocity.y > 0f)
+        {
+            coyoteTimeCounter = 0f;
         }
 
         if(Input.GetKeyDown(KeyCode.H)){
@@ -121,8 +174,6 @@ public class Player : MonoBehaviour
         if(currentHealth == 0){
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
-
-
     }
 
     // This function is called when a collision occurs
@@ -169,7 +220,6 @@ public class Player : MonoBehaviour
             knockbackCount -= Time.deltaTime;
         }
     }
-        
 
     private void Jump()
     {
@@ -177,19 +227,44 @@ public class Player : MonoBehaviour
         rb.velocity += Vector2.up * jumpForce;
     }
 
-    private void WallSlide()
+    //private void WallSlide()
+    //{
+    //    rb.velocity = new Vector2(rb.velocity.x, -slideVelocity);
+    //}
+
+    /*
+    private void Dash(Vector2 dir)
     {
-        rb.velocity = new Vector2(rb.velocity.x, -slideVelocity);
+        rb.velocity = dir.normalized * dashSpeed;
     }
-    private void OnDrawGizmosSelected()
+    */
+
+    //private void WallJump(Vector2 dir)
+    //{
+    //    rb.velocity = Vector2.Lerp(rb.velocity, (new Vector2(-dir.x * speed, rb.velocity.y)), 0.5f * Time.deltaTime);
+    //    rb.AddForce(new Vector2(dir.x * speed, 10000), ForceMode2D.Force);
+    //}
+
+    public int MasksKilled
     {
-        Gizmos.color = Color.red;
-        //Ground check sphere
-        Gizmos.DrawWireSphere((Vector2)transform.position + bottomOffset, groundCheckRadius);
-        //Wall check spheres
-        Gizmos.DrawWireSphere((Vector2)transform.position + sideOffset, wallCheckRadius);
-        Gizmos.DrawWireSphere((Vector2)transform.position - sideOffset, wallCheckRadius);
+        get { return masksKilled; }
+        private set { masksKilled = value; } // Keep or remove this
     }
+
+    // Public method to increment the kill count
+    public void IncrementKillCount()
+    {
+        masksKilled++;
+        Debug.Log("Masks Killed: " + masksKilled);
+    }
+
+    /*
+    private IEnumerator StopDash()
+    {
+        yield return new WaitForSeconds(dashTime);
+        isDashing = false;
+    }
+    */
 
     public void TakeDamage(int amount){
         currentHealth -= amount;
