@@ -42,6 +42,9 @@ public class Player : MonoBehaviour
     public float maxHealth = 100;
     public float currentHealth;
 
+    public float maxMana = 100;
+    public float currentMana;
+
     public int MasksKilled
     {
         get { return masksKilled; }
@@ -59,7 +62,9 @@ public class Player : MonoBehaviour
 
     private Rigidbody2D rb;
     private SpriteRenderer sr;
-    public Image hb;
+    public Image hb; // health bar
+
+    public Image mb; // mana bar
     
     // Start is called before the first frame update
     void Start()
@@ -67,7 +72,6 @@ public class Player : MonoBehaviour
         currentHealth = maxHealth;
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
-        hb = GetComponent<Image>();
 
         fallVector = Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1);
         lowJumpVector = Vector2.up * Physics2D.gravity.y * (lowJumpMultiplier - 1);
@@ -100,24 +104,23 @@ public class Player : MonoBehaviour
             rb.velocity += fallVector * Time.deltaTime;
         }
         //Increase gravity by lowJumpMultiplier if jump button is tapped 
-        else if(rb.velocity.y > 0 && !(Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.Space)))
+        else if(rb.velocity.y > 0 && !(Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow)))
         {
             rb.velocity += lowJumpVector * Time.deltaTime;
         }
 
-        if (onGround && (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKey(KeyCode.Space)))
+        if (onGround && (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)))
         {
             Jump();
         }
 
-        if(Input.GetKeyDown(KeyCode.Return)){
-            LowerBar(1);
-        }
         if(Input.GetKeyDown(KeyCode.H)){
-            IncreaseBar(1);
+            HealDamage(1);
         // ENEMY INTERACTION
         }
-
+        if(currentHealth == 0){
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
 
 
     }
@@ -131,6 +134,11 @@ public class Player : MonoBehaviour
             // Load the next scene
             SceneManager.LoadScene("Level2");
         }
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            TakeDamage(5);
+        }
+        
     }
 
 
@@ -183,14 +191,14 @@ public class Player : MonoBehaviour
         Gizmos.DrawWireSphere((Vector2)transform.position - sideOffset, wallCheckRadius);
     }
 
-    public void LowerBar(int amount){
+    public void TakeDamage(int amount){
         currentHealth -= amount;
         currentHealth = Mathf.Max(0, currentHealth);
         hb.fillAmount = (currentHealth/maxHealth);
         Debug.Log("Fill amount: " + (currentHealth/maxHealth) * 100);
     }
 
-    public void IncreaseBar(int amount){
+    public void HealDamage(int amount){
         currentHealth += amount;
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
         hb.fillAmount = (currentHealth/maxHealth);        
