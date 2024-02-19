@@ -61,7 +61,7 @@ public class Player : MonoBehaviour
         currentHealth = maxHealth;
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
-        hb = GetComponent<Image>();
+        
 
         fallVector = Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1);
         lowJumpVector = Vector2.up * Physics2D.gravity.y * (lowJumpMultiplier - 1);
