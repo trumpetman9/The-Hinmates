@@ -28,7 +28,7 @@ public class PlayerAttack : MonoBehaviour
             timeToAttack -= Time.deltaTime;
         }
 
-        if (Input.GetKey(KeyCode.F) && timeToAttack <= 0)
+        if (Input.GetKey(KeyCode.Space) && timeToAttack <= 0)
         {
             if (!isAttack)
             {
@@ -57,7 +57,7 @@ public class PlayerAttack : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyUp(KeyCode.F))
+        if (Input.GetKeyUp(KeyCode.Space))
         {
             isAttack = false;
         }
