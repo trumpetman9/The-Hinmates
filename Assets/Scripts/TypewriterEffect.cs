@@ -29,7 +29,7 @@ public class TypewriterEffect : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            SceneManager.LoadScene("demo"); // Load the scene named "demo"
+            SceneManager.LoadScene("Tutorial"); // Load the scene named "demo"
         }
     }
 }
