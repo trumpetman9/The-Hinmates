@@ -3,39 +3,61 @@ using UnityEngine;
 public class RoachMovement : MonoBehaviour
 {
     public float speed = 5f; // Speed of the roach's movement
-    public float boundaryLeft = -5f; // Left boundary of the roach's movement
-    public float boundaryRight = 5f; // Right boundary of the roach's movement
+    public float groundCheckDistance;
+    //public float boundaryLeft = -10f; // Left boundary of the roach's movement
+    //public float boundaryRight = 10f; // Right boundary of the roach's movement
+    //public GameObject leftPoint;
+    //public GameObject rightPoint;
 
-    private bool movingRight = true; // Direction of movement
+    private bool movingRight = false; // Direction of movement
+    private Vector2 currDir;
+    private Transform currentPoint;
 
+    private Rigidbody2D rb;
+
+    public Transform groundDetection;
     void Start()
     {
-        Flip();
+        rb = GetComponent<Rigidbody2D>();
+
+        //currentPoint = leftPoint.transform;
+        currDir = Vector2.left;
     }
     void Update()
     {
-        // Move the roach
-        if (movingRight)
+        /*
+        Vector2 point = currentPoint.position - transform.position;
+
+        if(currentPoint == leftPoint.transform)
         {
-            transform.Translate(Vector2.right * speed * Time.deltaTime);
+            rb.velocity = new Vector2(-speed, rb.velocity.y);
         }
         else
         {
-            transform.Translate(Vector2.left * speed * Time.deltaTime);
+            rb.velocity = new Vector2(speed, rb.velocity.y);
         }
 
-        // Check if the roach has reached the right boundary
-        if (transform.position.x >= boundaryRight)
+        Debug.Log(Vector2.Distance(transform.position, currentPoint.position));
+
+        if(Vector2.Distance(transform.position, currentPoint.position) < 0.5f && currentPoint == leftPoint.transform)
         {
-            movingRight = false;
-            // Optional: Flip the roach to face the left side
-            Flip();
+            currentPoint = rightPoint.transform;
+            Debug.Log("MOVING RIGHT");
         }
-        // Check if the roach has reached the left boundary
-        else if (transform.position.x <= boundaryLeft)
+        else if(Vector2.Distance(transform.position, currentPoint.position) < 0.5f && currentPoint == rightPoint.transform)
         {
-            movingRight = true;
-            // Optional: Flip the roach to face the right side
+            currentPoint = leftPoint.transform;
+        }
+        */
+
+        transform.Translate(currDir * speed * Time.deltaTime);
+
+        RaycastHit2D groundInfo = Physics2D.Raycast(groundDetection.position, Vector2.down, groundCheckDistance);
+
+        Debug.Log(groundInfo.collider);
+        Debug.DrawRay(groundDetection.position, Vector2.down * groundCheckDistance, Color.red);
+        if(groundInfo.collider == null)
+        {
             Flip();
         }
     }
@@ -46,5 +68,21 @@ public class RoachMovement : MonoBehaviour
         Vector3 theScale = transform.localScale;
         theScale.x *= -1; // Flip the roach's orientation
         transform.localScale = theScale;
+
+        if(currDir == Vector2.left)
+        {
+            currDir = Vector2.right;
+        }
+        else
+        {
+            currDir = Vector2.left;
+        }
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.blue;
+
+        Gizmos.DrawLine(groundDetection.position, Vector2.down * groundCheckDistance);
     }
 }

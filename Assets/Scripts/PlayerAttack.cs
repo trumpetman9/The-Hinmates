@@ -9,6 +9,7 @@ public class PlayerAttack : MonoBehaviour
 
     public Transform attackPos;
     public LayerMask whatIsEnemies;
+    public LayerMask whatIsWalls;
     public float attackRange;
     public float damage;
 
@@ -28,7 +29,7 @@ public class PlayerAttack : MonoBehaviour
             timeToAttack -= Time.deltaTime;
         }
 
-        if (Input.GetKey(KeyCode.F) && timeToAttack <= 0)
+        if (Input.GetKey(KeyCode.Space) && timeToAttack <= 0)
         {
             if (!isAttack)
             {
@@ -36,9 +37,12 @@ public class PlayerAttack : MonoBehaviour
 
                 GetComponentInChildren<Animator>().Play("Slash Animation");
                 Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(attackPos.position, attackRange, whatIsEnemies);
+                Collider2D[] wallsToDamage = Physics2D.OverlapCircleAll(attackPos.position, attackRange, whatIsWalls);
+                Debug.Log(wallsToDamage);
                 for (int i = 0; i < enemiesToDamage.Length; i++)
                 {
                     enemiesToDamage[i].GetComponent<Enemy>().health -= damage;
+
                     Debug.Log("hi1");
 
                     if (enemiesToDamage[i].GetComponent<Enemy>().health <= 0)
@@ -50,6 +54,11 @@ public class PlayerAttack : MonoBehaviour
                             playerObject.GetComponent<Player>().IncrementKillCount();
                         }
                     }
+
+                }
+                for (int i = 0; i < wallsToDamage.Length; i++)
+                {
+                    wallsToDamage[i].GetComponent<DestroyableWall>().health -= damage;
                 }
 
                 // Reset the cooldown timer
@@ -57,7 +66,7 @@ public class PlayerAttack : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyUp(KeyCode.F))
+        if (Input.GetKeyUp(KeyCode.Space))
         {
             isAttack = false;
         }
