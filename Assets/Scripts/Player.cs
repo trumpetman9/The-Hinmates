@@ -28,7 +28,7 @@ public class Player : MonoBehaviour
     public Vector2 sideOffset;       //Offset from player's transform to perform ground checks
     private bool onWall;
 
-    private bool isFacingRight = true;
+    public bool isFacingRight = true;
 
 
     private int masksKilled = 0;
