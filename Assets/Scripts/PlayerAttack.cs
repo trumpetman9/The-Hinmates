@@ -42,6 +42,7 @@ public class PlayerAttack : MonoBehaviour
                 for (int i = 0; i < enemiesToDamage.Length; i++)
                 {
                     enemiesToDamage[i].GetComponent<Enemy>().health -= damage;
+                    enemiesToDamage[i].GetComponent<Enemy>().Knockback(transform);
 
                     Debug.Log("hi1");
 

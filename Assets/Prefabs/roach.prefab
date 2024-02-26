@@ -45,6 +45,7 @@ GameObject:
   - component: {fileID: 134847310123411213}
   - component: {fileID: 3880148217714448343}
   - component: {fileID: 8758689186828007323}
+  - component: {fileID: -5889622327533737037}
   m_Layer: 7
   m_Name: roach
   m_TagString: Untagged
@@ -220,3 +221,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 2
+  knockbackForce: 20
+  knockbackDecel: 3
+  knockbackLength: 0.2
+  knockedBack: 0
+--- !u!114 &-5889622327533737037
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4579565277825080247}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 287f6ca3ee2395645af348414e584c34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

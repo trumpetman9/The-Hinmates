@@ -147,32 +147,6 @@ public class Player : MonoBehaviour
 
     private void Move(Vector2 dir)
     {
-        /*
-        if (knockbackCount <= 0)
-        {
-            rb.velocity = new Vector2(dir.x * speed, rb.velocity.y);
-
-            if (isFacingRight && dir.x < 0f || !isFacingRight && dir.x > 0f)
-            {
-                Vector3 localScale = transform.localScale;
-                isFacingRight = !isFacingRight;
-                localScale.x *= -1f;
-                transform.localScale = localScale;
-            }
-        }
-        else
-        {
-            if (knockFromRight)
-            {
-                rb.velocity = new Vector2(-knockbackCount, knockbackCount);
-            }
-            if (!knockFromRight)
-            {
-                rb.velocity = new Vector2(-knockbackCount, knockbackCount);
-            }
-            knockbackCount -= Time.deltaTime;
-        }
-        */
         if (!knockedBack)
         {
             rb.velocity = new Vector2(dir.x * speed, rb.velocity.y);
