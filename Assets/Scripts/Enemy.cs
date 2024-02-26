@@ -10,7 +10,7 @@ public class Enemy : MonoBehaviour
     public float knockbackForce;
     public float knockbackDecel;
     public float knockbackLength;
-    [SerializeField] private bool knockedBack;
+    public bool knockedBack;
 
     private Rigidbody2D rb;
     private SpriteRenderer sr;

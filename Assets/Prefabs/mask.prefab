@@ -191,7 +191,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09fc849aae8067e41a40c38734d3697f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 1
+  health: 50
+  knockbackForce: 50
+  knockbackDecel: 3
+  knockbackLength: 0.25
+  knockedBack: 0
 --- !u!114 &-9050422712583373434
 MonoBehaviour:
   m_ObjectHideFlags: 0
