@@ -32,10 +32,13 @@ public class Player : MonoBehaviour
 
 
     private int masksKilled = 0;
+
+    [Header("Knockback")]
     public float knockbackForce; // Handles Knockback of Player\
     public float knockbackLength;
-    public float knockbackCount;
+    public float knockbackDecel;
     public bool knockFromRight;
+    [SerializeField] private bool knockedBack;
 
 
     [Header("Health")]
@@ -144,6 +147,7 @@ public class Player : MonoBehaviour
 
     private void Move(Vector2 dir)
     {
+        /*
         if (knockbackCount <= 0)
         {
             rb.velocity = new Vector2(dir.x * speed, rb.velocity.y);
@@ -168,18 +172,67 @@ public class Player : MonoBehaviour
             }
             knockbackCount -= Time.deltaTime;
         }
+        */
+        if (!knockedBack)
+        {
+            rb.velocity = new Vector2(dir.x * speed, rb.velocity.y);
+
+            if (isFacingRight && dir.x < 0f || !isFacingRight && dir.x > 0f)
+            {
+                Vector3 localScale = transform.localScale;
+                isFacingRight = !isFacingRight;
+                localScale.x *= -1f;
+                transform.localScale = localScale;
+            }
+        }
+        else
+        {
+            rb.velocity = new Vector2(Mathf.Lerp(rb.velocity.x, 0f, knockbackDecel * Time.deltaTime), rb.velocity.y);
+        }
     }
         
 
     private void Jump()
     {
-        rb.velocity = new Vector2(rb.velocity.x, 0);
-        rb.velocity += Vector2.up * jumpForce;
+        if (!knockedBack)
+        {
+            rb.velocity = new Vector2(rb.velocity.x, 0);
+            rb.velocity += Vector2.up * jumpForce;
+        }
     }
 
     private void WallSlide()
     {
         rb.velocity = new Vector2(rb.velocity.x, -slideVelocity);
+    }
+
+    public void Knockback(Transform other)
+    {
+        knockedBack = true;
+
+        Vector2 dir = transform.position - other.position;
+
+        rb.velocity = dir.normalized * knockbackForce;
+
+        sr.color = Color.red;
+
+        StartCoroutine(FadeToWhite());
+        StartCoroutine(StopKnockback());
+    }
+
+    private IEnumerator FadeToWhite()
+    {
+        while(sr.color != Color.white)
+        {
+            yield return null;
+            sr.color = Color.Lerp(sr.color, Color.white, knockbackDecel * Time.deltaTime);
+        }
+    }
+
+    private IEnumerator StopKnockback()
+    {
+        yield return new WaitForSeconds(knockbackLength);
+        knockedBack = false;
     }
     private void OnDrawGizmosSelected()
     {
