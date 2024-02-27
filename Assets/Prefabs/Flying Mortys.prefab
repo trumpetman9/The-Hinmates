@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 5783921441346874583}
   - component: {fileID: -864781506299696416}
   - component: {fileID: 692931375638932128}
+  - component: {fileID: 4913370561278193944}
   m_Layer: 7
   m_Name: Flying Mortys
   m_TagString: Enemy
@@ -147,6 +148,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 1
+  ori_health: 1
+  animator: {fileID: 4913370561278193944}
 --- !u!114 &-9050422712583373434
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -322,3 +325,24 @@ PolygonCollider2D:
       - {x: 10.617319, y: -11.186104}
       - {x: 10.617319, y: -8.784568}
   m_UseDelaunayMesh: 0
+--- !u!95 &4913370561278193944
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 255141667939943779}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ade746cefd1e1984d86adcaed7f6ee82, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
