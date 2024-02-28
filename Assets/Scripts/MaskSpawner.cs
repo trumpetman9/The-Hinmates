@@ -7,6 +7,8 @@ public class MaskSpawner : MonoBehaviour
 
     private float timer;
     public int maxMasks;
+    public float spawnOffset = 0f;
+    public float yOffset = 0f;
     private int maskTracker;
 
     void Start()
@@ -32,6 +34,6 @@ public class MaskSpawner : MonoBehaviour
     void SpawnMask()
     {
         // Instantiate a new mask prefab at the spawner's position
-        Instantiate(maskPrefab, transform.position, Quaternion.identity);
+        Instantiate(maskPrefab, new Vector2(transform.position.x + spawnOffset, transform.position.y + yOffset), Quaternion.identity);
     }
 }
