@@ -43,11 +43,11 @@ public class PlayerAttack : MonoBehaviour
                 {
                     enemiesToDamage[i].GetComponent<Enemy>().health -= damage;
 
-                    Debug.Log("hi1");
+                    Debug.Log("damaged ");
 
                     if (enemiesToDamage[i].GetComponent<Enemy>().health <= 0)
                     {
-                        Debug.Log("hi2");
+                        Debug.Log("kill");
                         GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
                         if (playerObject != null)
                         {

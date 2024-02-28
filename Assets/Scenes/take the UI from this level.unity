@@ -473,7 +473,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09fc849aae8067e41a40c38734d3697f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 1
+  health: 2
 --- !u!114 &137981323
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -487,8 +487,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  boundaryLeft: -5
-  boundaryRight: 5
+  groundCheckDistance: 0
+  groundDetection: {fileID: 0}
 --- !u!50 &137981324
 Rigidbody2D:
   serializedVersion: 4
@@ -707,7 +707,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09fc849aae8067e41a40c38734d3697f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 1
+  health: 2
 --- !u!114 &179112285
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -721,8 +721,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 1
-  boundaryLeft: -1
-  boundaryRight: 5
+  groundCheckDistance: 0
+  groundDetection: {fileID: 0}
 --- !u!50 &179112286
 Rigidbody2D:
   serializedVersion: 4
@@ -941,7 +941,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09fc849aae8067e41a40c38734d3697f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 1
+  health: 2
 --- !u!114 &247196970
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -955,8 +955,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  boundaryLeft: -1
-  boundaryRight: 1
+  groundCheckDistance: 0
+  groundDetection: {fileID: 0}
 --- !u!50 &247196971
 Rigidbody2D:
   serializedVersion: 4
@@ -1250,7 +1250,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09fc849aae8067e41a40c38734d3697f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 1
+  health: 2
 --- !u!114 &439154578
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1264,8 +1264,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 3
-  boundaryLeft: -3
-  boundaryRight: 5
+  groundCheckDistance: 0
+  groundDetection: {fileID: 0}
 --- !u!50 &439154579
 Rigidbody2D:
   serializedVersion: 4
@@ -2540,7 +2540,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09fc849aae8067e41a40c38734d3697f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 1
+  health: 2
 --- !u!114 &1002397388
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2554,8 +2554,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  boundaryLeft: -5
-  boundaryRight: 5
+  groundCheckDistance: 0
+  groundDetection: {fileID: 0}
 --- !u!50 &1002397389
 Rigidbody2D:
   serializedVersion: 4
@@ -2695,6 +2695,63 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1005512483
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3932414773263808667, guid: eb7cf2d363238a24fa4879e9c7ac65f6, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -10.37
+      objectReference: {fileID: 0}
+    - target: {fileID: 3932414773263808667, guid: eb7cf2d363238a24fa4879e9c7ac65f6, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 4.28
+      objectReference: {fileID: 0}
+    - target: {fileID: 3932414773263808667, guid: eb7cf2d363238a24fa4879e9c7ac65f6, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3932414773263808667, guid: eb7cf2d363238a24fa4879e9c7ac65f6, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3932414773263808667, guid: eb7cf2d363238a24fa4879e9c7ac65f6, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3932414773263808667, guid: eb7cf2d363238a24fa4879e9c7ac65f6, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3932414773263808667, guid: eb7cf2d363238a24fa4879e9c7ac65f6, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3932414773263808667, guid: eb7cf2d363238a24fa4879e9c7ac65f6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3932414773263808667, guid: eb7cf2d363238a24fa4879e9c7ac65f6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3932414773263808667, guid: eb7cf2d363238a24fa4879e9c7ac65f6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4579565277825080247, guid: eb7cf2d363238a24fa4879e9c7ac65f6, type: 3}
+      propertyPath: m_Name
+      value: roach
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: eb7cf2d363238a24fa4879e9c7ac65f6, type: 3}
 --- !u!1 &1080594253
 GameObject:
   m_ObjectHideFlags: 0
@@ -2774,7 +2831,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09fc849aae8067e41a40c38734d3697f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 1
+  health: 2
 --- !u!114 &1080594256
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2788,8 +2845,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 1
-  boundaryLeft: -1
-  boundaryRight: 5
+  groundCheckDistance: 0
+  groundDetection: {fileID: 0}
 --- !u!50 &1080594257
 Rigidbody2D:
   serializedVersion: 4
@@ -49664,7 +49721,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09fc849aae8067e41a40c38734d3697f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 1
+  health: 2
 --- !u!114 &1704273117
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -49678,8 +49735,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  boundaryLeft: -5
-  boundaryRight: 5
+  groundCheckDistance: 0
+  groundDetection: {fileID: 0}
 --- !u!50 &1704273118
 Rigidbody2D:
   serializedVersion: 4
@@ -50070,7 +50127,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09fc849aae8067e41a40c38734d3697f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 1
+  health: 2
 --- !u!114 &1782337103
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -50084,8 +50141,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  boundaryLeft: -5
-  boundaryRight: 5
+  groundCheckDistance: 0
+  groundDetection: {fileID: 0}
 --- !u!50 &1782337104
 Rigidbody2D:
   serializedVersion: 4
@@ -52725,7 +52782,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09fc849aae8067e41a40c38734d3697f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 1
+  health: 2
 --- !u!114 &2000684818
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -52739,8 +52796,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  boundaryLeft: -2
-  boundaryRight: 1
+  groundCheckDistance: 0
+  groundDetection: {fileID: 0}
 --- !u!50 &2000684819
 Rigidbody2D:
   serializedVersion: 4
@@ -52918,6 +52975,9 @@ MonoBehaviour:
   whatIsEnemies:
     serializedVersion: 2
     m_Bits: 128
+  whatIsWalls:
+    serializedVersion: 2
+    m_Bits: 0
   attackRange: 1
   damage: 1
 --- !u!114 &2055130077
@@ -52950,7 +53010,10 @@ MonoBehaviour:
   knockFromRight: 0
   maxHealth: 100
   currentHealth: 0
+  maxMana: 100
+  currentMana: 0
   hb: {fileID: 1245045306}
+  mb: {fileID: 0}
 --- !u!61 &2055130078
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -53234,8 +53297,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  boundaryLeft: -5
-  boundaryRight: 5
+  groundCheckDistance: 0
+  groundDetection: {fileID: 0}
 --- !u!50 &2142661636
 Rigidbody2D:
   serializedVersion: 4
@@ -53386,3 +53449,4 @@ SceneRoots:
   - {fileID: 1080594260}
   - {fileID: 115188721}
   - {fileID: 72128115}
+  - {fileID: 1005512483}

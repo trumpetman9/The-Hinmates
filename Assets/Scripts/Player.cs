@@ -114,8 +114,8 @@ public class Player : MonoBehaviour
             Jump();
         }
 
-        if(Input.GetKeyDown(KeyCode.H)){
-            HealDamage(1);
+        if(Input.GetKeyDown(KeyCode.X)){
+            Shove(5f, 20f);
         // ENEMY INTERACTION
         }
         if(currentHealth == 0){
@@ -202,5 +202,30 @@ public class Player : MonoBehaviour
         currentHealth += amount;
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
         hb.fillAmount = (currentHealth/maxHealth);        
+    }
+
+    public void Shove(float radius, float force){
+        //idea: for each gameobject enemy, if they are under a straight line distance away from the player, they get shoved away from the player
+        
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, radius);
+
+        foreach(Collider2D collider in colliders){
+
+            Rigidbody2D rb = collider.attachedRigidbody;
+
+            //visualize the force field shove jedi thing?
+
+
+            if(rb != null){
+                Vector2 direction = collider.transform.position - transform.position;
+
+                direction.Normalize();
+
+                rb.velocity = direction * force;
+            }
+
+
+
+        }
     }
 }
