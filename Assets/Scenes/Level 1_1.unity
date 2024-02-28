@@ -9347,10 +9347,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startTimeAttack: 0.15
+  startTimeShove: 5
+  shoveEnabled: 0
+  startTimeRadiusAttack: 15
+  RadiusAttackEnabled: 0
   attackPos: {fileID: 1442032890}
   whatIsEnemies:
     serializedVersion: 2
     m_Bits: 128
+  whatIsMorty:
+    serializedVersion: 2
+    m_Bits: 0
   whatIsWalls:
     serializedVersion: 2
     m_Bits: 256
