@@ -66,6 +66,7 @@ public class MaskAI : MonoBehaviour
     {
         if (seeker.IsDone())
         {
+            Debug.Log("Update path");
             seeker.StartPath(rb.position, target.position, OnPathComplete);
         }
     }

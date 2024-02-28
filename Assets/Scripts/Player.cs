@@ -7,10 +7,10 @@ using UnityEngine.SceneManagement;
 public class Player : MonoBehaviour
 {
     [Header("Movement")]
-    public float speed;      
-    
+    public float speed;
+
     [Header("Jump")]
-    public float jumpForce;             
+    public float jumpForce;
     public float fallMultiplier;        //Gravity multiplier applied when player falls
     public float lowJumpMultiplier;     //Gravity multiplier applied when jump button is tapped (short jump)
     private Vector2 fallVector;         //Precalculated vector to account for increased gravity during player's fall
@@ -20,7 +20,7 @@ public class Player : MonoBehaviour
     public float groundCheckRadius;     //Radius of ground check sphere
     public Vector2 bottomOffset;       //Offset from player's transform to perform ground checks
     public LayerMask groundLayer;
-    private bool onGround;
+    [SerializeField] private bool onGround;
 
     [Header("Wall Climbing")]
     public float wallCheckRadius;     //Radius of ground check sphere

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ResourcePile : MonoBehaviour
 {
-    public int totalHealAmount;
+    private bool isEmpty;
     public int healAmount;
     // Start is called before the first frame update
     void Start()
@@ -22,10 +22,10 @@ public class ResourcePile : MonoBehaviour
     {
         Player player = collision.GetComponent<Player>();
         
-        if(player != null && totalHealAmount > 0)
+        if(player != null && !isEmpty)
         {
+            isEmpty = true;
             player.HealDamage(healAmount);
-            totalHealAmount -= healAmount;
         }
     }
 }
