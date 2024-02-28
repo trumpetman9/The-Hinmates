@@ -28,7 +28,7 @@ public class Player : MonoBehaviour
     public Vector2 sideOffset;       //Offset from player's transform to perform ground checks
     private bool onWall;
 
-    private bool isFacingRight = true;
+    public bool isFacingRight = true;
 
 
     private int masksKilled = 0;
@@ -115,11 +115,6 @@ public class Player : MonoBehaviour
         if (onGround && (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)))
         {
             Jump();
-        }
-
-        if(Input.GetKeyDown(KeyCode.H)){
-            HealDamage(1);
-        // ENEMY INTERACTION
         }
         if(currentHealth == 0){
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
@@ -230,4 +225,5 @@ public class Player : MonoBehaviour
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
         hb.fillAmount = (currentHealth/maxHealth);        
     }
+
 }
