@@ -15,6 +15,7 @@ public class MaskAI : MonoBehaviour
     bool reachEndOfPath;
 
     Seeker seeker;
+    Enemy enemy;
     Rigidbody2D rb;
 
     // Start is called before the first frame update
@@ -25,13 +26,15 @@ public class MaskAI : MonoBehaviour
         seeker = GetComponent<Seeker>();
         rb = GetComponent<Rigidbody2D>();
 
+        enemy = GetComponent<Enemy>();
+
         InvokeRepeating("UpdatePath", 0f, 0.5f);
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        if(path == null)
+        if(path == null || enemy.knockedBack)
         {
             return;
         }
@@ -63,6 +66,7 @@ public class MaskAI : MonoBehaviour
     {
         if (seeker.IsDone())
         {
+            Debug.Log("Update path");
             seeker.StartPath(rb.position, target.position, OnPathComplete);
         }
     }
