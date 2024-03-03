@@ -7,10 +7,10 @@ using UnityEngine.SceneManagement;
 public class Player : MonoBehaviour
 {
     [Header("Movement")]
-    public float speed;      
-    
+    public float speed;
+
     [Header("Jump")]
-    public float jumpForce;             
+    public float jumpForce;
     public float fallMultiplier;        //Gravity multiplier applied when player falls
     public float lowJumpMultiplier;     //Gravity multiplier applied when jump button is tapped (short jump)
     private Vector2 fallVector;         //Precalculated vector to account for increased gravity during player's fall
@@ -20,7 +20,7 @@ public class Player : MonoBehaviour
     public float groundCheckRadius;     //Radius of ground check sphere
     public Vector2 bottomOffset;       //Offset from player's transform to perform ground checks
     public LayerMask groundLayer;
-    private bool onGround;
+    [SerializeField] private bool onGround;
 
     [Header("Wall Climbing")]
     public float wallCheckRadius;     //Radius of ground check sphere
@@ -32,10 +32,13 @@ public class Player : MonoBehaviour
 
 
     private int masksKilled = 0;
+
+    [Header("Knockback")]
     public float knockbackForce; // Handles Knockback of Player\
     public float knockbackLength;
-    public float knockbackCount;
+    public float knockbackDecel;
     public bool knockFromRight;
+    [SerializeField] private bool knockedBack;
 
 
     [Header("Health")]
@@ -137,7 +140,7 @@ public class Player : MonoBehaviour
 
     private void Move(Vector2 dir)
     {
-        if (knockbackCount <= 0)
+        if (!knockedBack)
         {
             rb.velocity = new Vector2(dir.x * speed, rb.velocity.y);
 
@@ -151,28 +154,52 @@ public class Player : MonoBehaviour
         }
         else
         {
-            if (knockFromRight)
-            {
-                rb.velocity = new Vector2(-knockbackCount, knockbackCount);
-            }
-            if (!knockFromRight)
-            {
-                rb.velocity = new Vector2(-knockbackCount, knockbackCount);
-            }
-            knockbackCount -= Time.deltaTime;
+            rb.velocity = new Vector2(Mathf.Lerp(rb.velocity.x, 0f, knockbackDecel * Time.deltaTime), rb.velocity.y);
         }
     }
         
 
     private void Jump()
     {
-        rb.velocity = new Vector2(rb.velocity.x, 0);
-        rb.velocity += Vector2.up * jumpForce;
+        if (!knockedBack)
+        {
+            rb.velocity = new Vector2(rb.velocity.x, 0);
+            rb.velocity += Vector2.up * jumpForce;
+        }
     }
 
     private void WallSlide()
     {
         rb.velocity = new Vector2(rb.velocity.x, -slideVelocity);
+    }
+
+    public void Knockback(Transform other)
+    {
+        knockedBack = true;
+
+        Vector2 dir = transform.position - other.position;
+
+        rb.velocity = dir.normalized * knockbackForce;
+
+        sr.color = Color.red;
+
+        StartCoroutine(FadeToWhite());
+        StartCoroutine(StopKnockback());
+    }
+
+    private IEnumerator FadeToWhite()
+    {
+        while(sr.color != Color.white)
+        {
+            yield return null;
+            sr.color = Color.Lerp(sr.color, Color.white, knockbackDecel * Time.deltaTime);
+        }
+    }
+
+    private IEnumerator StopKnockback()
+    {
+        yield return new WaitForSeconds(knockbackLength);
+        knockedBack = false;
     }
     private void OnDrawGizmosSelected()
     {

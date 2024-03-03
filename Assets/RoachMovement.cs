@@ -54,8 +54,8 @@ public class RoachMovement : MonoBehaviour
 
         RaycastHit2D groundInfo = Physics2D.Raycast(groundDetection.position, Vector2.down, groundCheckDistance);
 
-        Debug.Log(groundInfo.collider);
-        Debug.DrawRay(groundDetection.position, Vector2.down * groundCheckDistance, Color.red);
+        //Debug.Log(groundInfo.collider);
+        //Debug.DrawRay(groundDetection.position, Vector2.down * groundCheckDistance, Color.red);
         if(groundInfo.collider == null)
         {
             Flip();
