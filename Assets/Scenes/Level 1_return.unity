@@ -157,6 +157,7 @@ MonoBehaviour:
   spawnInterval: 4
   maxMasks: 20
   spawnOffset: 0
+  yOffset: 0
 --- !u!212 &35032105
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1209,6 +1210,7 @@ MonoBehaviour:
   spawnInterval: 4
   maxMasks: 20
   spawnOffset: 0
+  yOffset: 0
 --- !u!212 &740640907
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1760,6 +1762,7 @@ MonoBehaviour:
   spawnInterval: 4
   maxMasks: 20
   spawnOffset: 0
+  yOffset: 0
 --- !u!212 &920736976
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -52746,6 +52749,7 @@ MonoBehaviour:
   spawnInterval: 4
   maxMasks: 20
   spawnOffset: 0
+  yOffset: 0
 --- !u!212 &1257293733
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -53063,6 +53067,7 @@ MonoBehaviour:
   spawnInterval: 4
   maxMasks: 20
   spawnOffset: 0
+  yOffset: 0
 --- !u!212 &1331635731
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -83941,6 +83946,7 @@ MonoBehaviour:
   spawnInterval: 4
   maxMasks: 20
   spawnOffset: 0
+  yOffset: 0
 --- !u!212 &1766576925
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -87600,15 +87606,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startTimeAttack: 0.15
+  startTimeShove: 0
+  shoveEnabled: 0
+  startTimeRadiusAttack: 0
+  RadiusAttackEnabled: 0
   attackPos: {fileID: 1442032890}
   whatIsEnemies:
     serializedVersion: 2
     m_Bits: 128
+  whatIsMorty:
+    serializedVersion: 2
+    m_Bits: 0
   whatIsWalls:
     serializedVersion: 2
     m_Bits: 256
   attackRange: 1.5
   damage: 1
+  mb: {fileID: 1667652336}
+  maxMana: 100
 --- !u!114 &2055130077
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -87639,11 +87654,7 @@ MonoBehaviour:
   knockbackCount: 0
   knockFromRight: 0
   maxHealth: 100
-  currentHealth: 0
-  maxMana: 100
-  currentMana: 0
   hb: {fileID: 1219270259}
-  mb: {fileID: 1667652336}
 --- !u!61 &2055130078
 BoxCollider2D:
   m_ObjectHideFlags: 0

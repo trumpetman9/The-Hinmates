@@ -9363,6 +9363,8 @@ MonoBehaviour:
     m_Bits: 256
   attackRange: 1.5
   damage: 1
+  mb: {fileID: 1667652336}
+  maxMana: 100
 --- !u!114 &2055130077
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9393,11 +9395,7 @@ MonoBehaviour:
   knockbackCount: 0
   knockFromRight: 0
   maxHealth: 100
-  currentHealth: 0
-  maxMana: 100
-  currentMana: 0
   hb: {fileID: 1219270259}
-  mb: {fileID: 1667652336}
 --- !u!61 &2055130078
 BoxCollider2D:
   m_ObjectHideFlags: 0

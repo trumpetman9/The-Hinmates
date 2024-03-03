@@ -40,10 +40,9 @@ public class Player : MonoBehaviour
 
     [Header("Health")]
     public float maxHealth = 100;
-    public float currentHealth;
+    private float currentHealth;
 
-    public float maxMana = 100;
-    public float currentMana;
+
 
     public int MasksKilled
     {
@@ -64,7 +63,6 @@ public class Player : MonoBehaviour
     private SpriteRenderer sr;
     public Image hb; // health bar
 
-    public Image mb; // mana bar
     
     // Start is called before the first frame update
     void Start()
@@ -190,7 +188,7 @@ public class Player : MonoBehaviour
         currentHealth -= amount;
         currentHealth = Mathf.Max(0, currentHealth);
         hb.fillAmount = (currentHealth/maxHealth);
-        Debug.Log("Fill amount: " + (currentHealth/maxHealth) * 100);
+        //Debug.Log("Fill amount: " + (currentHealth/maxHealth) * 100);
     }
 
     public void HealDamage(int amount){

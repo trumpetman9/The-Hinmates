@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
@@ -21,11 +22,22 @@ public class PlayerAttack : MonoBehaviour
     public float attackRange;
     public float damage;
 
+    public Image mb;
+
+    private float timeToManaRegen;
+
     private bool isAttack;
 
+    public float maxMana = 100;
+    private float currentMana;
+    
+    
     void Start()
     {
         isAttack = false;
+        currentMana = maxMana;
+        shoveEnabled = true;
+        RadiusAttackEnabled = true;
     }
 
     // Update is called once per frame
@@ -94,8 +106,8 @@ public class PlayerAttack : MonoBehaviour
             timeToShove -= Time.deltaTime; 
         }
 
-        if(Input.GetKey(KeyCode.X) && timeToShove <= 0 && shoveEnabled){
-            Shove(5f, 20f);
+        if(Input.GetKey(KeyCode.X) && timeToShove <= 0 && shoveEnabled && currentMana >= 15){
+            Shove(5f, 20f);   
             timeToShove = startTimeShove;
         }
 
@@ -104,11 +116,21 @@ public class PlayerAttack : MonoBehaviour
             timeToRadiusAttack -= Time.deltaTime;
         }
 
-        if(Input.GetKey(KeyCode.C) && timeToRadiusAttack <= 0){
+        if(Input.GetKey(KeyCode.C) && timeToRadiusAttack <= 0  && RadiusAttackEnabled && currentMana >= 50){
             RadiusDamage(10f, 1f);
             timeToRadiusAttack = startTimeRadiusAttack;
         }
 
+        if (timeToManaRegen > 0)
+        {
+            timeToManaRegen -= Time.deltaTime;
+        }
+
+        if (timeToManaRegen <= 0)
+        {
+            RegenerateMana(2);
+            timeToManaRegen = 1;
+        }
 
 
     }
@@ -119,19 +141,22 @@ public class PlayerAttack : MonoBehaviour
         
         Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, radius, whatIsEnemies);
 
-        foreach(Collider2D collider in colliders){
+        if(currentMana >= 15) {
+            SpendMana(15);
+            foreach(Collider2D collider in colliders){
 
-            Rigidbody2D rb = collider.attachedRigidbody;
+                Rigidbody2D rb = collider.attachedRigidbody;
 
-            //visualize the force field shove jedi thing?
+                //visualize the force field shove jedi thing?
 
 
-            if(rb != null){
-                Vector2 direction = collider.transform.position - transform.position;
+                if(rb != null){
+                    Vector2 direction = collider.transform.position - transform.position;
 
-                direction.Normalize();
+                    direction.Normalize();
 
-                rb.velocity = direction * force;
+                    rb.velocity = direction * force;
+                }
             }
         }
     }
@@ -139,9 +164,12 @@ public class PlayerAttack : MonoBehaviour
     
     public void RadiusDamage(float radius, float damage){
         Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, radius, whatIsEnemies);
-
-        foreach(Collider2D collider in colliders){
-            collider.gameObject.GetComponent<Enemy>().TakeDamage(damage);
+        
+        if(currentMana >= 50){
+            SpendMana(50);
+            foreach(Collider2D collider in colliders){
+                collider.gameObject.GetComponent<Enemy>().TakeDamage(damage);
+            }
         }
     }
 
@@ -152,5 +180,19 @@ public class PlayerAttack : MonoBehaviour
 
         // Draw the attack range circle in the Scene view when the script is not running
         Gizmos.DrawWireSphere(attackPos.position, attackRange);
+    }
+
+
+    public void SpendMana(int amount){
+        currentMana -= amount;
+        currentMana = Mathf.Max(0, currentMana);
+        mb.fillAmount = (currentMana/maxMana);
+        //Debug.Log("Fill amount: " + (currentHealth/maxHealth) * 100);
+    }
+
+    public void RegenerateMana(int amount){
+        currentMana += amount;
+        currentMana = Mathf.Clamp(currentMana, 0, maxMana);
+        mb.fillAmount = (currentMana/maxMana);     
     }
 }
