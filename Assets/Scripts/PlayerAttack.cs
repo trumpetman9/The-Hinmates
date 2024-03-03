@@ -35,6 +35,9 @@ public class PlayerAttack : MonoBehaviour
         currentMana = maxMana;
         shoveEnabled = true;
         RadiusAttackEnabled = true;
+        startTimeShove = 5;
+        startTimeRadiusAttack = 15;
+        
     }
 
     // Update is called once per frame
