@@ -17,16 +17,19 @@ public class PlayerAttack : MonoBehaviour
     private bool isAttack;
 
     private float timeToShove;
-    public float startTimeShove;
+    private float startTimeShove;
     public bool shoveEnabled;
     private float timeToRadiusAttack;
-    public float startTimeRadiusAttack;
+    private float startTimeRadiusAttack;
     public bool RadiusAttackEnabled;
 
     public Image mb;
     private float timeToManaRegen;
     public float maxMana = 100;
     private float currentMana;
+
+    public AbilityIcon shove;
+    public AbilityIcon radiusAttack;
 
 
     void Start()
@@ -99,6 +102,7 @@ public class PlayerAttack : MonoBehaviour
 
 
         if(Input.GetKey(KeyCode.X) && timeToShove <= 0 && shoveEnabled && currentMana >= 15){
+            shove.StartCooldown(startTimeShove);
             SpendMana(15);
             Shove(5f, 20f);  
             timeToShove = startTimeShove;
@@ -112,6 +116,7 @@ public class PlayerAttack : MonoBehaviour
 
 
         if(Input.GetKey(KeyCode.C) && timeToRadiusAttack <= 0  && RadiusAttackEnabled && currentMana >= 50){
+            radiusAttack.StartCooldown(startTimeRadiusAttack);
             SpendMana(50);
             RadiusDamage(10f, 1f);
             timeToRadiusAttack = startTimeRadiusAttack;
