@@ -13029,7 +13029,10 @@ MonoBehaviour:
   attackPos: {fileID: 1442032890}
   whatIsEnemies:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 0
+  whatIsWalls:
+    serializedVersion: 2
+    m_Bits: 0
   attackRange: 1
   damage: 1
 --- !u!114 &2055130077
@@ -13052,7 +13055,7 @@ MonoBehaviour:
   bottomOffset: {x: 0, y: -1}
   groundLayer:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 0
   wallCheckRadius: 0.2
   slideVelocity: 5
   sideOffset: {x: 0.5, y: 0}

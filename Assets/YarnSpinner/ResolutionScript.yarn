@@ -1,0 +1,14 @@
+﻿title: ResolutionScript
+tags:
+---
+
+Driver: So... you got COVID?
+    -> Yep, that’s why I’m here.
+    -> …
+        Driver: Hi
+            -> okay
+Driver: hi
+
+
+
+===
