@@ -14,10 +14,13 @@ public class Enemy : MonoBehaviour
 
     private Rigidbody2D rb;
     private SpriteRenderer sr;
+    
+    public bool Dead;
 
     // Start is called before the first frame update
     void Start()
     {
+        Dead = false;
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
     }
@@ -27,7 +30,7 @@ public class Enemy : MonoBehaviour
     {
         if (health <= 0)
         {
-            Destroy(gameObject);
+            StartCoroutine(Die());
             
         }
     }
@@ -46,6 +49,13 @@ public class Enemy : MonoBehaviour
         StartCoroutine(StopKnockback());
     }
 
+    // non-knockback damage
+    public void TurnRed() 
+    {
+        sr.color = Color.red;
+        StartCoroutine(FadeToWhite());
+    }
+
     private IEnumerator FadeToWhite()
     {
         while (sr.color != Color.white)
@@ -59,5 +69,11 @@ public class Enemy : MonoBehaviour
     {
         yield return new WaitForSeconds(knockbackLength);
         knockedBack = false;
+    }
+
+    private IEnumerator Die(){
+        Dead = true;
+        yield return new WaitForSeconds(0.1f);
+        Destroy(gameObject);
     }
 }

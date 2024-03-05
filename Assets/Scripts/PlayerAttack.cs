@@ -165,6 +165,7 @@ public class PlayerAttack : MonoBehaviour
 
         foreach(Collider2D collider in colliders){
             collider.gameObject.GetComponent<Enemy>().health -= damage;
+            collider.gameObject.GetComponent<Enemy>().TurnRed();
         }
     }
 
