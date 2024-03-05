@@ -88217,7 +88217,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cooldownTimer: 0
-  cooldownBar: {fileID: 1736838955}
+  cooldownBar: {fileID: 2126809225}
   cooldownTime: 15
 --- !u!1001 &1909373664
 PrefabInstance:
@@ -88324,7 +88324,7 @@ MonoBehaviour:
   mb: {fileID: 1667652336}
   maxMana: 100
   shove: {fileID: 918544119}
-  radiusAttack: {fileID: 0}
+  radiusAttack: {fileID: 1902914975}
 --- !u!114 &2055130077
 MonoBehaviour:
   m_ObjectHideFlags: 0
