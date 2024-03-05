@@ -7,6 +7,8 @@ public class AbilityIcon : MonoBehaviour
 {
     public float cooldownTimer;
     public Image cooldownBar; 
+
+    public Image InsufficientMana;
     
     public float cooldownTime;
 
@@ -37,6 +39,14 @@ public class AbilityIcon : MonoBehaviour
     {
         cooldownTime = time;
         cooldownTimer = time;
+    }
+
+    public void SufficientMana(bool isSufficient){
+        if(isSufficient){
+            InsufficientMana.gameObject.SetActive(false);
+        } else {
+            InsufficientMana.gameObject.SetActive(true);
+        }
     }
 
 }

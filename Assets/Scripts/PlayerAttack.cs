@@ -134,6 +134,18 @@ public class PlayerAttack : MonoBehaviour
             RegenerateMana(2);
             timeToManaRegen = 1;
         }
+
+        if(currentMana < 15){
+            shove.SufficientMana(false);
+        } else {
+            shove.SufficientMana(true);
+        }
+
+        if(currentMana < 50){
+            radiusAttack.SufficientMana(false);
+        } else {
+            radiusAttack.SufficientMana(true);
+        }
        
     }
 
