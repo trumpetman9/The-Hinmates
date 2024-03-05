@@ -7,14 +7,16 @@ public class Final : MonoBehaviour
     public float health;
     private float ori_health;
     public Animator animator;
-    public bool hasEvolved;
+    private bool hasEvolved;
     public MaskSpawner maskspawner;
+    private bool isEvolving;
 
     // Start is called before the first frame update
     void Start()
     {
         ori_health = health;
         hasEvolved = false;
+        isEvolving = false;
     }
 
     // Update is called once per frame
@@ -26,17 +28,34 @@ public class Final : MonoBehaviour
         }
     }
 
+    private IEnumerator Evolve()
+    {
+        // Play the animation for getting suck in
+        animator.SetTrigger("IsEvolving?");
+        isEvolving = true;
+
+        yield return new WaitForSeconds(4);
+
+        // Move this object somewhere off the screen
+
+    }
+
     public void TakeDamage(float x)
     {
         if (health < ori_health / 2 && !hasEvolved)
         {
             hasEvolved = true;
-            animator.SetTrigger("IsEvolving?");
+            StartCoroutine(Evolve());
             maskspawner.spawnInterval = 0.5f;
             maskspawner.maxMasks = 50;
+            isEvolving = false;
         }
-        health = health - x;
-        animator.SetTrigger("Hurt");
+        if (!isEvolving)
+        {
+            health = health - x;
+            animator.SetTrigger("Hurt");
+        }
+
     }
 }
 
