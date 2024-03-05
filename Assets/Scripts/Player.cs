@@ -130,7 +130,7 @@ public class Player : MonoBehaviour
             // Load the next scene
             SceneManager.LoadScene("Level2");
         }
-        if (collision.gameObject.CompareTag("Enemy"))
+        if (collision.gameObject.CompareTag("Enemy") && !collision.gameObject.GetComponent<Enemy>().Dead)
         {
             TakeDamage(5);
         }
