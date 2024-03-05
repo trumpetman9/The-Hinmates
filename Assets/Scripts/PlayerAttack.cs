@@ -131,8 +131,8 @@ public class PlayerAttack : MonoBehaviour
 
         if (timeToManaRegen <= 0)
         {
-            RegenerateMana(2);
-            timeToManaRegen = 1;
+            RegenerateMana(1);
+            timeToManaRegen = 0.5f;
         }
 
         if(currentMana < 15){
@@ -166,7 +166,7 @@ public class PlayerAttack : MonoBehaviour
 
                 direction.Normalize();
 
-                rb.velocity = direction * force;
+                rb.AddForce(direction * force, ForceMode2D.Impulse);
             }
         }
     }

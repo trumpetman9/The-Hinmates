@@ -107476,7 +107476,7 @@ MonoBehaviour:
   knockFromRight: 0
   knockedBack: 0
   maxHealth: 100
-  hb: {fileID: 0}
+  hb: {fileID: 1207643292}
 --- !u!61 &2055130078
 BoxCollider2D:
   m_ObjectHideFlags: 0
