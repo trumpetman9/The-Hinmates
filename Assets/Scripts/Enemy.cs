@@ -73,7 +73,7 @@ public class Enemy : MonoBehaviour
 
     private IEnumerator Die(){
         Dead = true;
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.05f);
         Destroy(gameObject);
     }
 }
