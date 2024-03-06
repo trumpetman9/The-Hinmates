@@ -5,6 +5,8 @@ using UnityEngine;
 public class ForceField : MonoBehaviour
 {
     public GameObject player;
+
+    [SerializeField] private float expandSpeed;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,6 +19,6 @@ public class ForceField : MonoBehaviour
         transform.position = player.transform.position;
 
         Vector3 newScale = new Vector3(6, 6, -0.6f);
-        transform.localScale = Vector3.Lerp(transform.localScale, newScale, 5 * Time.deltaTime);
+        transform.localScale = Vector3.Lerp(transform.localScale, newScale, expandSpeed * Time.deltaTime);
     }
 }
