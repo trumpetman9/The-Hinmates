@@ -11,7 +11,6 @@ public class PlayerAttack : MonoBehaviour
     public Transform attackPos;
     public LayerMask whatIsEnemies;
     public LayerMask whatIsWalls;
-    public LayerMask whatIsMorty;
     public float attackRange;
     public float damage;
 
@@ -61,18 +60,8 @@ public class PlayerAttack : MonoBehaviour
 
                 GetComponentInChildren<Animator>().Play("Slash Animation");
                 Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(attackPos.position, attackRange, whatIsEnemies);
-                Collider2D[] mortyToDamage = Physics2D.OverlapCircleAll(attackPos.position, attackRange, whatIsMorty);
                 Collider2D[] wallsToDamage = Physics2D.OverlapCircleAll(attackPos.position, attackRange, whatIsWalls);
                 Debug.Log(wallsToDamage);
-                for (int i = 0; i < mortyToDamage.Length; i++)
-                {
-                    Final finalMorty = mortyToDamage[i].GetComponent<Final>();
-
-                    if (finalMorty != null)
-                    {
-                        finalMorty.TakeDamage(damage);
-                    }
-                }
                 for (int i = 0; i < enemiesToDamage.Length; i++)
                 {
                     enemiesToDamage[i].GetComponent<Enemy>().health -= damage;

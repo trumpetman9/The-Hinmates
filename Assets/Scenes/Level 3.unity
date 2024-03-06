@@ -81693,6 +81693,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 50
   animator: {fileID: 1280896684}
+  hasEvolved: 0
   maskspawner: {fileID: 1280896689}
 --- !u!1 &1284558206
 GameObject:
@@ -107435,9 +107436,6 @@ MonoBehaviour:
   whatIsWalls:
     serializedVersion: 2
     m_Bits: 256
-  whatIsMorty:
-    serializedVersion: 2
-    m_Bits: 512
   attackRange: 1.5
   damage: 1
   shoveEnabled: 0

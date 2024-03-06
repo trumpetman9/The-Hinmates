@@ -162,6 +162,7 @@ RectTransform:
   m_AnchoredPosition: {x: -850, y: -450}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+<<<<<<< HEAD
 --- !u!1 &94439849
 GameObject:
   m_ObjectHideFlags: 0
@@ -238,6 +239,9 @@ CanvasRenderer:
   m_GameObject: {fileID: 94439849}
   m_CullTransparentMesh: 1
 --- !u!1 &309177834
+=======
+--- !u!1 &322217769
+>>>>>>> parent of a8688306 (Dialogue for Sublevel 1 and 2)
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -10904,6 +10908,7 @@ MonoBehaviour:
     m_Bits: 256
   attackRange: 1.5
   damage: 1
+<<<<<<< HEAD
   shoveEnabled: 0
   RadiusAttackEnabled: 0
 <<<<<<< Updated upstream
@@ -10923,6 +10928,8 @@ MonoBehaviour:
 =======
 >>>>>>> 0f03df271ba2cc3ef802088b74e55cde69c1350c
 >>>>>>> Stashed changes
+=======
+>>>>>>> parent of a8688306 (Dialogue for Sublevel 1 and 2)
 --- !u!114 &2055130077
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10944,17 +10951,16 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
-  onGround: 0
   wallCheckRadius: 0.2
   slideVelocity: 5
   sideOffset: {x: 0.5, y: 0}
   isFacingRight: 1
   knockbackForce: 10
   knockbackLength: 0
-  knockbackDecel: 0
+  knockbackCount: 0
   knockFromRight: 0
-  knockedBack: 0
   maxHealth: 100
+<<<<<<< HEAD
 <<<<<<< Updated upstream
   hb: {fileID: 1021155451}
 =======
@@ -10964,6 +10970,13 @@ MonoBehaviour:
   hb: {fileID: 1021155451}
 >>>>>>> 0f03df271ba2cc3ef802088b74e55cde69c1350c
 >>>>>>> Stashed changes
+=======
+  currentHealth: 0
+  maxMana: 100
+  currentMana: 0
+  hb: {fileID: 1219270259}
+  mb: {fileID: 1667652336}
+>>>>>>> parent of a8688306 (Dialogue for Sublevel 1 and 2)
 --- !u!61 &2055130078
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -11367,7 +11380,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
-  m_AdditionalShaderChannelsFlag: 25
+  m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
@@ -11386,7 +11399,10 @@ RectTransform:
   m_Children:
   - {fileID: 47852891}
   - {fileID: 424414877}
+<<<<<<< HEAD
   - {fileID: 2061080552}
+=======
+>>>>>>> parent of a8688306 (Dialogue for Sublevel 1 and 2)
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -11394,9 +11410,12 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+<<<<<<< HEAD
 =======
 >>>>>>> 0f03df271ba2cc3ef802088b74e55cde69c1350c
 >>>>>>> Stashed changes
+=======
+>>>>>>> parent of a8688306 (Dialogue for Sublevel 1 and 2)
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -11407,6 +11426,7 @@ SceneRoots:
   - {fileID: 1631172614}
   - {fileID: 2055130081}
   - {fileID: 360582206}
+<<<<<<< HEAD
 <<<<<<< Updated upstream
   - {fileID: 1723960565}
 =======
@@ -11417,3 +11437,5 @@ SceneRoots:
   - {fileID: 1723960565}
 >>>>>>> 0f03df271ba2cc3ef802088b74e55cde69c1350c
 >>>>>>> Stashed changes
+=======
+>>>>>>> parent of a8688306 (Dialogue for Sublevel 1 and 2)
