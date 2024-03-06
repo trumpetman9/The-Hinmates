@@ -6,6 +6,7 @@ public class InteractPopup : MonoBehaviour
     public GameObject popupText; // Assign your Text or TextMeshPro element in the inspector
     private bool isPlayerInsideTrigger = false; // Flag to track player's presence inside the trigger
     public Yarn.Unity.DialogueRunner dialogueRunner;
+    public string startNode;
 
     private void Start()
     {
@@ -20,7 +21,7 @@ public class InteractPopup : MonoBehaviour
         {
             // Perform your interaction here, e.g., running the dialogue system
             Debug.Log("Dialogue system activated");
-            StartDialogue("Level1_1Script");
+            StartDialogue(startNode);
         }
     }
 
@@ -51,5 +52,3 @@ public class InteractPopup : MonoBehaviour
         }
     }
 }
-
-
