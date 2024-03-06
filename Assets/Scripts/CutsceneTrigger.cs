@@ -14,10 +14,15 @@ public class CutsceneTrigger : MonoBehaviour
     public GameObject actualPlayer;
     public GameObject actualMorty;
     public GameObject playerCamera;
+    public AudioClip bossMusic;
+
+    private AudioSource audioSource;
 
     // Use this for initialization
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
+        audioSource.clip = bossMusic;
         timeline = GetComponent<PlayableDirector>();
         // Subscribe to the stopped event to know when the timeline finishes playing
         timeline.stopped += OnTimelineStopped;
