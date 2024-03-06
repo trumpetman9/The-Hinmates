@@ -6,10 +6,20 @@ using UnityEngine.SceneManagement;
 public class Menu : MonoBehaviour
 {
     // Start is called before the first frame update
-    
-    public void StartGame()
+
+    public AudioSource soundPlayer;
+
+    IEnumerator PlaySounds()
     {
+        // Play a sound here
+        soundPlayer.Play();
+        yield return new WaitForSeconds(2);
         SceneManager.LoadScene("DriverScene");
+    }
+
+        public void StartGame()
+    {
+        StartCoroutine(PlaySounds());
     }
 
     public void QuitGame()
