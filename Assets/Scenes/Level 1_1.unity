@@ -387,7 +387,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 335522988}
   m_CullTransparentMesh: 1
-<<<<<<< HEAD
 --- !u!1001 &608935312
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -604,8 +603,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bec29c0a230741bdac901dba8da47ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-=======
->>>>>>> parent of a8688306 (Dialogue for Sublevel 1 and 2)
 --- !u!1 &734871463
 GameObject:
   m_ObjectHideFlags: 0
@@ -1229,7 +1226,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0b09e7857660247b1477e93731de29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-<<<<<<< HEAD
 --- !u!1 &972229614
 GameObject:
   m_ObjectHideFlags: 0
@@ -1343,8 +1339,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1108748380}
   m_CullTransparentMesh: 1
-=======
->>>>>>> parent of a8688306 (Dialogue for Sublevel 1 and 2)
 --- !u!1 &1201265435
 GameObject:
   m_ObjectHideFlags: 0
@@ -6857,7 +6851,6 @@ Transform:
   - {fileID: 907683445}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-<<<<<<< HEAD
 --- !u!1 &1784293184
 GameObject:
   m_ObjectHideFlags: 0
@@ -7047,8 +7040,6 @@ RectTransform:
   m_AnchoredPosition: {x: -700, y: -450}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
-=======
->>>>>>> parent of a8688306 (Dialogue for Sublevel 1 and 2)
 --- !u!1 &1862828353
 GameObject:
   m_ObjectHideFlags: 0
@@ -10523,23 +10514,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startTimeAttack: 0.15
-  startTimeShove: 5
-  shoveEnabled: 0
-  startTimeRadiusAttack: 15
-  RadiusAttackEnabled: 0
   attackPos: {fileID: 1442032890}
   whatIsEnemies:
     serializedVersion: 2
     m_Bits: 128
-  whatIsMorty:
-    serializedVersion: 2
-    m_Bits: 0
   whatIsWalls:
     serializedVersion: 2
     m_Bits: 256
   attackRange: 1.5
   damage: 1
-<<<<<<< HEAD
 <<<<<<< Updated upstream
   shoveEnabled: 1
   RadiusAttackEnabled: 0
@@ -10564,10 +10547,6 @@ MonoBehaviour:
   radiusAttack: {fileID: 1979654573}
 >>>>>>> 0f03df271ba2cc3ef802088b74e55cde69c1350c
 >>>>>>> Stashed changes
-=======
-  mb: {fileID: 1667652336}
-  maxMana: 100
->>>>>>> parent of a8688306 (Dialogue for Sublevel 1 and 2)
 --- !u!114 &2055130077
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10589,14 +10568,16 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
+  onGround: 0
   wallCheckRadius: 0.2
   slideVelocity: 5
   sideOffset: {x: 0.5, y: 0}
   isFacingRight: 1
   knockbackForce: 10
   knockbackLength: 0
-  knockbackCount: 0
+  knockbackDecel: 0
   knockFromRight: 0
+  knockedBack: 0
   maxHealth: 100
   hb: {fileID: 241402385}
 --- !u!61 &2055130078
@@ -10895,7 +10876,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
@@ -11046,12 +11027,9 @@ SceneRoots:
 =======
 <<<<<<< HEAD
   - {fileID: 2118031774}
-<<<<<<< HEAD
   - {fileID: 1639745910}
   - {fileID: 608935312}
 =======
   - {fileID: 1535812188}
 >>>>>>> 0f03df271ba2cc3ef802088b74e55cde69c1350c
 >>>>>>> Stashed changes
-=======
->>>>>>> parent of a8688306 (Dialogue for Sublevel 1 and 2)
