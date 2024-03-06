@@ -8,23 +8,45 @@ public class Menu : MonoBehaviour
     // Start is called before the first frame update
 
     public AudioSource soundPlayer;
+    public AudioSource mainTheme;
 
-    IEnumerator PlaySounds()
+    public IEnumerator PlaySounds()
     {
         // Play a sound here
         soundPlayer.Play();
-        yield return new WaitForSeconds(2);
+        StartCoroutine(FadeOut(mainTheme, 3f));
+        yield return new WaitForSeconds(3);
         SceneManager.LoadScene("DriverScene");
     }
 
-        public void StartGame()
+    public IEnumerator FadeOut(AudioSource audioSource, float FadeTime)
+    {
+        float startVolume = audioSource.volume;
+
+        while (audioSource.volume > 0)
+        {
+            audioSource.volume -= startVolume * Time.deltaTime / FadeTime;
+
+            yield return null;
+        }
+
+        audioSource.Stop();
+        audioSource.volume = startVolume;
+    }
+
+    void Start()
+    {
+        mainTheme.Play();
+    }
+
+    public void StartGame()
     {
         StartCoroutine(PlaySounds());
     }
 
     public void QuitGame()
     {
-        Application.Quit();
+        UnityEditor.EditorApplication.isPlaying = false;
 
     }
 }
