@@ -274,8 +274,8 @@ MonoBehaviour:
   sideOffset: {x: 0.5, y: 0}
   isFacingRight: 1
   knockbackForce: 10
-  knockbackLength: 0
-  knockbackDecel: 0
+  knockbackLength: 0.2
+  knockbackDecel: 3
   knockFromRight: 0
   knockedBack: 0
   maxHealth: 100
