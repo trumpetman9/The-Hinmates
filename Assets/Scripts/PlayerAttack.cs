@@ -32,6 +32,9 @@ public class PlayerAttack : MonoBehaviour
     public AbilityIcon shove;
     public AbilityIcon radiusAttack;
 
+    public AudioSource src;
+    public AudioClip attack1, attack2;
+
 
     void Start()
     {
@@ -63,7 +66,18 @@ public class PlayerAttack : MonoBehaviour
                 Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(attackPos.position, attackRange, whatIsEnemies);
                 Collider2D[] mortyToDamage = Physics2D.OverlapCircleAll(attackPos.position, attackRange, whatIsMorty);
                 Collider2D[] wallsToDamage = Physics2D.OverlapCircleAll(attackPos.position, attackRange, whatIsWalls);
-                Debug.Log(wallsToDamage);
+
+                if (enemiesToDamage.Length != 0  || mortyToDamage.Length != 0 || wallsToDamage.Length != 0)
+                {
+                    src.clip = attack1;
+                    src.Play();
+                }
+                else
+                {
+                    src.clip = attack2;
+                    src.Play();
+                }
+
                 for (int i = 0; i < mortyToDamage.Length; i++)
                 {
                     Final finalMorty = mortyToDamage[i].GetComponent<Final>();
