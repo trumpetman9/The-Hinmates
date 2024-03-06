@@ -47,7 +47,7 @@ public class PlayerAttack : MonoBehaviour
         RadiusAttackEnabled = true;
         startTimeShove = 5;
         startTimeRadiusAttack = 15;
-        startTimeField = 10;
+        startTimeField = 5;
         
     }
 
