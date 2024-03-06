@@ -349,6 +349,10 @@ PrefabInstance:
       propertyPath: hb
       value: 
       objectReference: {fileID: 1207643292}
+    - target: {fileID: 8512450793983209038, guid: c6694ca86d5dda84fa545b1f98c81ebe, type: 3}
+      propertyPath: knockedBack
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

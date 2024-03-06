@@ -70,7 +70,6 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        currentHealth = maxHealth;
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
 
@@ -212,6 +211,7 @@ public class Player : MonoBehaviour
     }
 
     public void TakeDamage(int amount){
+        GameData.health -= amount;
         currentHealth -= amount;
         currentHealth = Mathf.Max(0, currentHealth);
         hb.fillAmount = (currentHealth/maxHealth);
@@ -219,6 +219,7 @@ public class Player : MonoBehaviour
     }
 
     public void HealDamage(int amount){
+        GameData.health += amount;
         currentHealth += amount;
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
         hb.fillAmount = (currentHealth/maxHealth);        
