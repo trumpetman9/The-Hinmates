@@ -133,7 +133,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!61 &3130637579036025963
 BoxCollider2D:
@@ -197,6 +197,7 @@ MonoBehaviour:
   knockbackDecel: 3
   knockbackLength: 0.25
   knockedBack: 0
+  Dead: 0
 --- !u!114 &-9050422712583373434
 MonoBehaviour:
   m_ObjectHideFlags: 0

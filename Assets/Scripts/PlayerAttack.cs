@@ -24,6 +24,12 @@ public class PlayerAttack : MonoBehaviour
     private float startTimeRadiusAttack;
     public bool RadiusAttackEnabled;
 
+    public GameObject forceField;
+    [SerializeField] private float forceFieldDuration;
+    private float timeToField;
+    private float startTimeField;
+    
+
     public Image mb;
     private float timeToManaRegen;
     public float maxMana = 100;
@@ -41,6 +47,7 @@ public class PlayerAttack : MonoBehaviour
         RadiusAttackEnabled = true;
         startTimeShove = 5;
         startTimeRadiusAttack = 15;
+        startTimeField = 10;
         
     }
 
@@ -133,6 +140,22 @@ public class PlayerAttack : MonoBehaviour
             timeToRadiusAttack = startTimeRadiusAttack;
         }
 
+        if(timeToField > 0)
+        {
+            Debug.Log("Force field time left:" + timeToField);
+            timeToField -= Time.deltaTime;
+        }
+
+        if(Input.GetKey(KeyCode.X) && timeToField <= 0 && currentMana >= 15)
+        {
+            SpendMana(15);
+            GameObject createdField = Instantiate(forceField, transform.position, Quaternion.identity);
+            
+            timeToField = startTimeField;
+
+            StartCoroutine(DestroyForceField(createdField));
+        }
+
 
         if (timeToManaRegen > 0)
         {
@@ -190,6 +213,12 @@ public class PlayerAttack : MonoBehaviour
             collider.gameObject.GetComponent<Enemy>().health -= damage;
             collider.gameObject.GetComponent<Enemy>().TurnRed();
         }
+    }
+
+    IEnumerator DestroyForceField(GameObject forceField)
+    {
+        yield return new WaitForSeconds(forceFieldDuration);
+        Destroy(forceField);
     }
 
 
