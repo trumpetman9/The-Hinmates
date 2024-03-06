@@ -132,14 +132,14 @@ public class PlayerAttack : MonoBehaviour
             timeToShove -= Time.deltaTime;
         }
 
-
+        /*
         if(Input.GetKey(KeyCode.X) && timeToShove <= 0 && shoveEnabled && currentMana >= 15){
             shove.StartCooldown(startTimeShove);
             SpendMana(15);
             Shove(5f, 20f);  
             timeToShove = startTimeShove;
         }
-
+        */
 
         if (timeToRadiusAttack > 0){
             Debug.Log("Radius attack left:" + timeToRadiusAttack);
@@ -162,6 +162,8 @@ public class PlayerAttack : MonoBehaviour
 
         if(Input.GetKey(KeyCode.X) && timeToField <= 0 && currentMana >= 15)
         {
+            shove.StartCooldown(startTimeShove);
+
             SpendMana(15);
             GameObject createdField = Instantiate(forceField, transform.position, Quaternion.identity);
             
