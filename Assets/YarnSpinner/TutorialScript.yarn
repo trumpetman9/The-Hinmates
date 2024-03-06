@@ -1,0 +1,26 @@
+﻿title: TutorialScript
+tags:
+---
+
+Unknown: Psst. Hey you!
+    -> …
+Unknown: I know you can hear me!
+    -> Who is this?
+    -> …
+        Unknown: I promise I’m not a voice in your head, just respond!
+            -> Who is this?
+            -> ...
+                Unknown: You annoy me. Anyways...
+                    -> ...
+Unknown: My identity need not be known right now. All you need to know is how to get out of Hinman! You with me?
+    -> Yes
+        Unknown: Awesome! First, let’s see you move. Use the left and right arrow keys to move in those directions, and use the up arrow key to jump!
+    -> No
+        Unknown: Wow, college has got you that depressed? Let’s fix that by getting some movement in! Use the left and right arrow keys to move in those directions, and use the up arrow key to jump!
+Unknown: Look at you go! Now use the "space" button to slash that apple
+    -> I'm getting it!
+Unknown: Now now, don't get too excited this is just the easy part.
+Unknown: Go ahead and break down this door and you can get started
+
+===
+
