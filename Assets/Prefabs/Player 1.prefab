@@ -307,6 +307,8 @@ MonoBehaviour:
   damage: 1
   shoveEnabled: 1
   RadiusAttackEnabled: 1
+  forceField: {fileID: 2557103511739344818, guid: 43e3855c74cebca449873fd6f6422924, type: 3}
+  forceFieldDuration: 0.6
   mb: {fileID: 0}
   maxMana: 100
   shove: {fileID: 0}
