@@ -34,7 +34,7 @@ public class CutsceneTrigger : MonoBehaviour
         mortySprite.GetComponent<SpriteRenderer>().enabled = false;
         playerSprite.GetComponent<SpriteRenderer>().enabled = false;
         actualPlayer.transform.position = new Vector3(7.83f, -2.5f, 0f);
-        actualPlayer.GetComponent<SpriteRenderer>().enabled = true;
+        actualPlayer.SetActive(true);
         actualMorty.GetComponent<MaskSpawner>().maxMasks = 20;
         playerCamera.GetComponent<CinemachineVirtualCamera>().Follow = actualPlayer.transform;
 
@@ -52,7 +52,7 @@ public class CutsceneTrigger : MonoBehaviour
             Instantiate(dialoguePrefab, transform.position, transform.rotation);
             timeline.Play();
             playerSprite.GetComponent<SpriteRenderer>().enabled = true;
-            actualPlayer.GetComponent<SpriteRenderer>().enabled = false;
+            actualPlayer.SetActive(false);
             playerCamera.GetComponent<CinemachineVirtualCamera>().Follow = playerSprite.transform;
 
 

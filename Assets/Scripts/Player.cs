@@ -191,6 +191,7 @@ public class Player : MonoBehaviour
     {
         while(sr.color != Color.white)
         {
+            Debug.Log("Color not white");
             yield return null;
             sr.color = Color.Lerp(sr.color, Color.white, knockbackDecel * Time.deltaTime);
         }
