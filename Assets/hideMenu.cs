@@ -6,6 +6,7 @@ public class hideMenu : MonoBehaviour
 {
     // Start is called before the first frame update
     public GameObject ourStartMenu;
+    public float time;
 
     void Start()
     {
@@ -15,7 +16,7 @@ public class hideMenu : MonoBehaviour
     public IEnumerator unhide()
     {
         Debug.Log("Waiting for 7 seconds...");
-        yield return new WaitForSeconds(7f);
+        yield return new WaitForSeconds(time);
 
         Debug.Log("Unhiding the Start Menu!");
         ourStartMenu.SetActive(true);

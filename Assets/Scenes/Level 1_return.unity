@@ -1340,7 +1340,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24f44dd850a2a3a4793ed4fc81a8b07b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneBuildIndex: 6
+  sceneBuildIndex: 5
 --- !u!1 &740640905
 GameObject:
   m_ObjectHideFlags: 0
@@ -55771,7 +55771,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24f44dd850a2a3a4793ed4fc81a8b07b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneBuildIndex: 4
+  sceneBuildIndex: 3
 --- !u!4 &1433853665
 Transform:
   m_ObjectHideFlags: 0
@@ -85815,10 +85815,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -89715,7 +89715,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 1
+  Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0

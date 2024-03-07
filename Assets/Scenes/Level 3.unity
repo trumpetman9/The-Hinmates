@@ -81815,7 +81815,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24f44dd850a2a3a4793ed4fc81a8b07b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneBuildIndex: 1
+  sceneBuildIndex: 0
 --- !u!61 &1231001787
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -107473,10 +107473,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
