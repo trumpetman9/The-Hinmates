@@ -47,4 +47,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/DriverScene.unity
     guid: 28580cdd71925449f8c955cb7d1f52d3
+  - enabled: 1
+    path: Assets/Scenes/FinalCutscene.unity
+    guid: 124603e1536574340900642abfcd1db5
   m_configObjects: {}
