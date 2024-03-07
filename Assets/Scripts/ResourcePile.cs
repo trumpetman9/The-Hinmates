@@ -6,6 +6,10 @@ public class ResourcePile : MonoBehaviour
 {
     private bool isEmpty;
     public int healAmount;
+    public SpriteRenderer spriteRenderer;
+    public Sprite newSprite;
+    public AudioSource src;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,6 +28,8 @@ public class ResourcePile : MonoBehaviour
         
         if(player != null && !isEmpty)
         {
+            src.Play();
+            spriteRenderer.sprite = newSprite;
             isEmpty = true;
             player.HealDamage(healAmount);
         }
